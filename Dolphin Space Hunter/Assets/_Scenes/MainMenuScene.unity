@@ -420,7 +420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: 21.7}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 135, y: 52.137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &497537644
@@ -639,10 +639,10 @@ RectTransform:
   m_Father: {fileID: 1376732072}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 14.700035, y: 0}
-  m_SizeDelta: {x: 264.13995, y: 138.4}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -26.0685}
+  m_SizeDelta: {x: 136, y: 52.137}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &942344954
 MonoBehaviour:
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 128.89969, y: 88.43112, z: 0, w: 0}
+  m_margin: {x: -0.51330566, y: -0.605072, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 942344954}
     characterCount: 4
@@ -874,8 +874,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: -118.6}
-  m_SizeDelta: {x: 135, y: 52.137}
+  m_AnchoredPosition: {x: 0, y: -83}
+  m_SizeDelta: {x: 135, y: 52.136993}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376732073
 MonoBehaviour:
@@ -1004,8 +1004,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 14.700035, y: 0}
-  m_SizeDelta: {x: 264.13995, y: 138.4}
+  m_AnchoredPosition: {x: 0.000022888184, y: 0}
+  m_SizeDelta: {x: 0.000030518, y: 52.137}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1384894920
 MonoBehaviour:
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 128.89969, y: 88.43112, z: 0, w: 0}
+  m_margin: {x: 0.52197266, y: 1.4655457, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1384894920}
     characterCount: 7
@@ -1163,7 +1163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: -48.8}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 223.3, y: 52.137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513781916
@@ -1293,8 +1293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 14.700035, y: 0}
-  m_SizeDelta: {x: 264.13995, y: 138.4}
+  m_AnchoredPosition: {x: 1.0999985, y: 0.0000076293945}
+  m_SizeDelta: {x: 2.2, y: 52.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1853085494
 MonoBehaviour:
@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 128.89969, y: 88.43112, z: 0, w: 0}
+  m_margin: {x: 0.5219116, y: 1.4655457, z: 1.0353394, w: 0}
   m_textInfo:
     textComponent: {fileID: 1853085494}
     characterCount: 4
