@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-*/[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Mm]emoryCaptures/
+"Dolphin Space Hunter"/[Ll]ibrary/
+"Dolphin Space Hunter"/[Tt]emp/
+"Dolphin Space Hunter"/[Oo]bj/
+"Dolphin Space Hunter"/[Bb]uild/
+"Dolphin Space Hunter"/[Bb]uilds/
+"Dolphin Space Hunter"/[Ll]ogs/
+"Dolphin Space Hunter"/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -20,7 +20,7 @@
 [Aa]ssets/Plugins/Editor/JetBrains*
 
 # Visual Studio cache directory
-.vs/
+"Dolphin Space Hunter"/.vs/
 
 # Gradle cache directory
 .gradle/
