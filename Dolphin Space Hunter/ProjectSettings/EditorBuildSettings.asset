@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/OptionsScene.unity
     guid: 476435cfdda504445b2ec0a8f9c279b8
+  - enabled: 1
+    path: Assets/_Scenes/AsteroidScene.unity
+    guid: 87905a096ebf4a647afff26e88e78e60
   m_configObjects: {}

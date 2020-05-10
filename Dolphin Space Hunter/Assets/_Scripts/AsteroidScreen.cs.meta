@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 988646324f6a2db438669ab9fe9f7b0c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pantallaEscudo: {instanceID: 0}
+  - Atype1: {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
+  - Atype2: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
+  - Atype3: {fileID: 130102, guid: 04d0bf4be9447154188d86f6e3b8dce9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
