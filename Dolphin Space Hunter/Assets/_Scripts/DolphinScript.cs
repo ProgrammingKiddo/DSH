@@ -11,7 +11,16 @@ public class DolphinScript : MonoBehaviour
 {
 
     #region Variables
-    private float xMovingDistance;
+    public float radius;
+    public float speed;
+    public FleetController.MovementPattern dolphinPattern;
+    
+
+    private Transform dolphinTransform;
+    private Transform fleetTransform;
+    private Vector3 movementVector = Vector3.zero;
+    private float circleStep;
+    private float degree = 0f;
     #endregion
 
 
@@ -19,7 +28,12 @@ public class DolphinScript : MonoBehaviour
 
     void Start()
     {
-        xMovingDistance = 10f;
+        dolphinTransform = GetComponent<Transform>();
+        fleetTransform = GetComponentInParent<Transform>();
+
+        // How many seconds to perform a whole circular movement
+        circleStep = 360f * speed * Time.fixedDeltaTime;
+
     }
 
     void Update()
@@ -30,11 +44,16 @@ public class DolphinScript : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (this.transform.position.x >= 350 || this.transform.position.x <= -350)
+        movementVector.x = Mathf.Cos((degree +45f) * Mathf.Deg2Rad) * radius;
+        movementVector.y = Mathf.Sin((degree +45f) * Mathf.Deg2Rad) * radius;
+
+        degree += circleStep;
+        if (degree > 360f)
         {
-            xMovingDistance *= -1;
+            degree -= 360f;
         }
-        this.transform.position += new Vector3(xMovingDistance, 0f, 0f);
+
+        dolphinTransform.Translate(movementVector * radius, fleetTransform);
     }
 
     #endregion
