@@ -33,8 +33,6 @@ public class ShootProjectile : MonoBehaviour
     public void Shoot(GameObject projectile)
     {
         GameObject projectileShot = Instantiate(projectile, gunMuzzle.transform.position, this.transform.rotation);
-        //projectileShot.transform.LookAt(target.transform);
-        Debug.Log("Target:" + target.transform.position + ", projectileForward: " + this.transform.forward);
-        projectileShot.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectile.GetComponent<ProjectileScript>().projectileSpeed;
+        projectileShot.GetComponent<Rigidbody>().velocity = this.transform.forward * projectile.GetComponent<ProjectileScript>().projectileSpeed;
     }
 }
