@@ -1649,7 +1649,8 @@ MonoBehaviour:
   gameCamera: {fileID: 769713997}
   Projectile: {fileID: 4400967604671624117, guid: ae24f86a94f1b6e4da49d24f3482a5b4,
     type: 3}
-  Gun: {fileID: 31722132}
+  Gun1: {fileID: 31722132}
+  Gun2: {fileID: 1745283985}
 --- !u!1 &952242056
 GameObject:
   m_ObjectHideFlags: 0
