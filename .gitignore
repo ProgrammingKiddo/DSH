@@ -3,6 +3,7 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 "Dolphin Space Hunter"/[Ll]ibrary/
+"Dolphin Space Hunter"/[Ll]ibrary
 "Dolphin Space Hunter"/[Tt]emp/
 "Dolphin Space Hunter"/[Oo]bj/
 "Dolphin Space Hunter"/[Bb]uild/
