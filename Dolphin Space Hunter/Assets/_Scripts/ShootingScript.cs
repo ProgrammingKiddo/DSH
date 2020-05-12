@@ -15,16 +15,20 @@ public class ShootingScript : MonoBehaviour
 
     #region Variables
     public Camera gameCamera;
-    public GameObject Bullet;
-    public float bulletVelocity;
+    public GameObject Projectile;
+    //public float bulletVelocity;
+    public GameObject Gun1;
+    public GameObject Gun2;
 
 
     Touch shootTouch;
     bool shooting = false;
     Vector3 shootTarget;
-    Vector3 screenCenter;
     private GameObject bulletShot;
-    
+    private Vector3 leftProjectileSpawn;
+    private Vector3 rightProjectileSpawn;
+
+    private int i = 0;
     #endregion
 
 
@@ -32,16 +36,23 @@ public class ShootingScript : MonoBehaviour
 
     void Start()
     {
-        screenCenter = new Vector3(gameCamera.pixelWidth / 2, gameCamera.pixelHeight / 2, 0f);
     }
 
     void Update()
     {
+        leftProjectileSpawn = gameCamera.transform.position + new Vector3(-80f, -75f, 400f);
+        rightProjectileSpawn = gameCamera.transform.position + new Vector3(80f, -75f, 400f);
+
+        // Si se detecta algún toque, y no se está disparando en este momento
         if (Input.touchCount > 0 && !shooting)
         {
+            // Cogemos solo el primer toque (para evitar múltiples disparos tocando con varios dedos
             shootTouch = Input.GetTouch(0);
-            shooting = true;
-            shootTarget = gameCamera.ScreenToWorldPoint(screenCenter);
+            // Solo hacemos un disparo por toque, evitando que un toque prolongado resulte en varios disparos
+            if (shootTouch.phase == TouchPhase.Began)
+            {
+                shooting = true;
+            }
         }
         
     }
@@ -50,9 +61,17 @@ public class ShootingScript : MonoBehaviour
     {
         if (shooting)
         {
-            Debug.Log("Shooting!");
-            bulletShot = Instantiate(Bullet, this.transform.position, this.transform.rotation);
-            bulletShot.GetComponent<Rigidbody>().velocity = this.transform.forward * bulletVelocity;
+            // Alternar disparo entre ambas armas
+            if (i % 2 == 0)
+            {
+                Gun1.GetComponent<ShootProjectile>().Shoot(Projectile);
+            }
+            else
+            {
+                Gun2.GetComponent<ShootProjectile>().Shoot(Projectile);
+            }
+            i++;
+            if (i == 2) i = 0;
             shooting = false;
         }
     }

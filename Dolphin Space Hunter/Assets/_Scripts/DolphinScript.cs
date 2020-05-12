@@ -32,20 +32,20 @@ public class DolphinScript : MonoBehaviour
         fleetTransform = GetComponentInParent<Transform>();
 
         // How many seconds to perform a whole circular movement
-        circleStep = 360f * speed * Time.fixedDeltaTime;
+        circleStep = 360f * Time.fixedDeltaTime;
 
     }
 
     void Update()
     {
-        
+        //Debug.Log("xAxis Accel: " + Input.acceleration.x + ", yAxis Accel:" + Input.acceleration.y);
     }
 
     private void FixedUpdate()
     {
 
-        movementVector.x = Mathf.Cos((degree +45f) * Mathf.Deg2Rad) * radius;
-        movementVector.y = Mathf.Sin((degree +45f) * Mathf.Deg2Rad) * radius;
+        movementVector.x = Mathf.Cos((degree +45f) * Mathf.Deg2Rad);
+        movementVector.y = Mathf.Sin((degree +45f) * Mathf.Deg2Rad);
 
         degree += circleStep;
         if (degree > 360f)

@@ -53,7 +53,7 @@ public class FleetController : MonoBehaviour
         fleetMovementVector = new Vector3(Random.Range(0.2f, 1f),
                                             Random.Range(0.2f, 1f),
                                             0f) * speed;
-        StartCoroutine(SpawnShips());
+        //StartCoroutine(SpawnShips());
     }
 
     void Update()
@@ -85,7 +85,7 @@ public class FleetController : MonoBehaviour
         while (createdShips < numberOfShips)
         {
             ships[createdShips] = Instantiate(ShipModel, this.gameObject.transform, false);
-            ships[createdShips].GetComponent<DolphinScript>().dolphinPattern = fleetPattern;
+            ships[createdShips].GetComponent<DolphinScript>().dolphinPattern = shipsPattern;
             createdShips++;
             yield return new WaitForSecondsRealtime(1.3f);
         }
