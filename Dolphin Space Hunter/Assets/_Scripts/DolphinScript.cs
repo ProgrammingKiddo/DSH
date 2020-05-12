@@ -13,7 +13,7 @@ public class DolphinScript : MonoBehaviour
     #region Variables
     public float radius;
     public float speed;
-    public FleetController.MovementPattern dolphinPattern;
+    public FleetController.ShipMovementPattern dolphinPattern;
     
 
     private Transform dolphinTransform;

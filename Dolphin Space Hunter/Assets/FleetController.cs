@@ -13,14 +13,23 @@ public class FleetController : MonoBehaviour
     #region Variables
 
     public GameObject ShipModel;
-    public enum MovementPattern
+    public enum ShipMovementPattern
     {
         Lateral,
         Erratic,
         Circular,
         DoubleCircular
     };
-    public MovementPattern fleetPattern;
+    public ShipMovementPattern shipsPattern;
+
+    public enum FleetMovementPattern
+    {
+        Quiet,
+        Lateral,
+        Erratic,
+        Circular
+    };
+    public FleetMovementPattern fleetPattern;
 
     public int numberOfShips;
     public int behaviour;
