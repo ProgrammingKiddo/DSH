@@ -21,6 +21,7 @@ public class FleetController : MonoBehaviour
         DoubleCircular
     };
     public ShipMovementPattern shipsPattern;
+    public GameObject gameDirector;
 
     public enum FleetMovementPattern
     {
@@ -31,13 +32,14 @@ public class FleetController : MonoBehaviour
     };
     public FleetMovementPattern fleetPattern;
 
-    public int numberOfShips;
+    public int initialNumberOfShips = 0;
     public int behaviour;
     public float speed;
 
-    private GameObject[] ships;
+    private List<GameObject> ships;
     private Transform fleetTransform;
     private int createdShips = 0;
+    private int numberOfShips = 0;
     private Vector3 startingPosition;
     private Vector3 fleetMovementVector;
     #endregion
@@ -49,11 +51,12 @@ public class FleetController : MonoBehaviour
     {
         fleetTransform = this.gameObject.transform;
         startingPosition = fleetTransform.position;
-        ships = new GameObject[numberOfShips];
+
         fleetMovementVector = new Vector3(Random.Range(0.2f, 1f),
                                             Random.Range(0.2f, 1f),
                                             0f) * speed;
         //StartCoroutine(SpawnShips());
+        numberOfShips = initialNumberOfShips;
     }
 
     void Update()
@@ -82,12 +85,24 @@ public class FleetController : MonoBehaviour
 
     IEnumerator SpawnShips()
     {
-        while (createdShips < numberOfShips)
+        GameObject tempShipRef;
+        while (createdShips < initialNumberOfShips)
         {
-            ships[createdShips] = Instantiate(ShipModel, this.gameObject.transform, false);
-            ships[createdShips].GetComponent<DolphinScript>().dolphinPattern = shipsPattern;
+            tempShipRef = Instantiate(ShipModel, this.gameObject.transform, false);
+            tempShipRef.GetComponent<DolphinScript>().dolphinPattern = shipsPattern;
+            ships.Add(tempShipRef);
             createdShips++;
             yield return new WaitForSecondsRealtime(1.3f);
+        }
+    }
+
+    public void shipDestroyed(GameObject ship)
+    {
+        ships.Remove(ship);
+        numberOfShips--;
+        if (numberOfShips <= 0)
+        {
+            gameDirector.GetComponent<ShooterGameDirector>().fleetDestroyed(this);
         }
     }
 }

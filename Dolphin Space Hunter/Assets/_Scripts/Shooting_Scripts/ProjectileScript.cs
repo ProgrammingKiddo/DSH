@@ -12,6 +12,7 @@ public class ProjectileScript : MonoBehaviour
 
     #region Variables
     public float projectileSpeed;
+    public int damage = 5;
 
     private Transform bulletTransform;
     private Vector3 originalScale;
@@ -45,7 +46,7 @@ public class ProjectileScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-            Debug.Log("Enemy destroyed!");
+            Debug.Log("Enemy hit!");
         }
     }
 

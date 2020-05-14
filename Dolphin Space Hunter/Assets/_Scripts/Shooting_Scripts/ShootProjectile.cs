@@ -13,6 +13,7 @@ public class ShootProjectile : MonoBehaviour
     #region Variables
     public GameObject gunMuzzle;
     public GameObject target;
+    public int damage = 5;
     #endregion
 
 

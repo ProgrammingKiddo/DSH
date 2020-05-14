@@ -14,6 +14,8 @@ public class DolphinScript : MonoBehaviour
     public float radius;
     public float speed;
     public FleetController.ShipMovementPattern dolphinPattern;
+    public GameObject gameDirector;
+    public int health = 10;
     
 
     private Transform dolphinTransform;
@@ -56,5 +58,28 @@ public class DolphinScript : MonoBehaviour
         dolphinTransform.Translate(movementVector * radius, fleetTransform);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Usamos una etiqueta específica para los proyectiles del jugador para evitar
+        // que las naves se dañen con sus propios proyectiles
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
+        {
+            gameDirector.GetComponent<ShooterGameDirector>().shipHit();
+            health -= collision.gameObject.GetComponent<ProjectileScript>().damage;
+
+            if (health <= 0)
+            {
+                // Al game director le enviamos solo la información relevante: la posición de la nave
+                // (a la que podemos acceder mediante el transform asociado al script) y las características
+                // de la misma (que están definidas en la clase DolphinScript
+                gameDirector.GetComponent<ShooterGameDirector>().shipDestroyed(this);
+                // A la flota le enviamos la referencia de la nave (el GO) para que lo destruya y lleve
+                // la cuenta de cuántas naves de la flota quedan
+                GetComponentInParent<FleetController>().shipDestroyed(this.gameObject);
+            }
+        }
+    }
+
     #endregion
+
 }
