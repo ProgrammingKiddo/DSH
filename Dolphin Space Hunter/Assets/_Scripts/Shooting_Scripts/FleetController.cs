@@ -21,7 +21,6 @@ public class FleetController : MonoBehaviour
         DoubleCircular
     };
     public ShipMovementPattern shipsPattern;
-    public GameObject gameDirector;
 
     public enum FleetMovementPattern
     {
@@ -89,7 +88,7 @@ public class FleetController : MonoBehaviour
         while (createdShips < initialNumberOfShips)
         {
             tempShipRef = Instantiate(ShipModel, this.gameObject.transform, false);
-            tempShipRef.GetComponent<DolphinScript>().dolphinPattern = shipsPattern;
+            tempShipRef.GetComponent<ShipController>().dolphinPattern = shipsPattern;
             ships.Add(tempShipRef);
             createdShips++;
             yield return new WaitForSecondsRealtime(1.3f);
@@ -98,11 +97,13 @@ public class FleetController : MonoBehaviour
 
     public void shipDestroyed(GameObject ship)
     {
-        ships.Remove(ship);
+        //ships.Remove(ship);
+        ship.SetActive(false);
         numberOfShips--;
         if (numberOfShips <= 0)
         {
-            gameDirector.GetComponent<ShooterGameDirector>().fleetDestroyed(this);
+            ShooterGameDirector.Instance().fleetDestroyed(this);
+            Debug.Log("Fleet destroyed!");
         }
     }
 }

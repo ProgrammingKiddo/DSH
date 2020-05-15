@@ -37,6 +37,7 @@ public class ProjectileScript : MonoBehaviour
 
         if (bulletTransform.position.z > Camera.main.farClipPlane)
         {
+            ShooterGameDirector.Instance().missedShot();
             Destroy(this.gameObject);
         }
     }
@@ -45,8 +46,8 @@ public class ProjectileScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
-            Debug.Log("Enemy hit!");
+            //Destroy(collision.gameObject);
+            //Debug.Log("Enemy hit!");
         }
     }
 

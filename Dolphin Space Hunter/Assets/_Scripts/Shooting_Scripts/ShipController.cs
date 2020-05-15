@@ -7,22 +7,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DolphinScript : MonoBehaviour
+public class ShipController : MonoBehaviour
 {
 
     #region Variables
     public float radius;
     public float speed;
     public FleetController.ShipMovementPattern dolphinPattern;
-    public GameObject gameDirector;
-    public int health = 10;
+    public int initialHealth = 10;
     
 
     private Transform dolphinTransform;
     private Transform fleetTransform;
     private Vector3 movementVector = Vector3.zero;
     private float circleStep;
-    private float degree = 0f;
+    private float angle = 0f;
+    private int remainingHealth;
     #endregion
 
 
@@ -35,6 +35,7 @@ public class DolphinScript : MonoBehaviour
 
         // How many seconds to perform a whole circular movement
         circleStep = 360f * Time.fixedDeltaTime;
+        remainingHealth = initialHealth;
 
     }
 
@@ -45,14 +46,15 @@ public class DolphinScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Usamos las funciones de seno y coseno para calcular la siguiente posición de la nave
+        movementVector.x = Mathf.Cos((angle +45f) * Mathf.Deg2Rad);
+        movementVector.y = Mathf.Sin((angle +45f) * Mathf.Deg2Rad);
 
-        movementVector.x = Mathf.Cos((degree +45f) * Mathf.Deg2Rad);
-        movementVector.y = Mathf.Sin((degree +45f) * Mathf.Deg2Rad);
-
-        degree += circleStep;
-        if (degree > 360f)
+        // "Reseteamos" la variable para evitar desbordamientos
+        angle += circleStep;
+        if (angle > 360f)
         {
-            degree -= 360f;
+            angle -= 360f;
         }
 
         dolphinTransform.Translate(movementVector * radius, fleetTransform);
@@ -64,15 +66,15 @@ public class DolphinScript : MonoBehaviour
         // que las naves se dañen con sus propios proyectiles
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            gameDirector.GetComponent<ShooterGameDirector>().shipHit();
-            health -= collision.gameObject.GetComponent<ProjectileScript>().damage;
+            ShooterGameDirector.Instance().shipHit();
+            remainingHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
 
-            if (health <= 0)
+            if (remainingHealth <= 0)
             {
                 // Al game director le enviamos solo la información relevante: la posición de la nave
                 // (a la que podemos acceder mediante el transform asociado al script) y las características
                 // de la misma (que están definidas en la clase DolphinScript
-                gameDirector.GetComponent<ShooterGameDirector>().shipDestroyed(this);
+                ShooterGameDirector.Instance().shipDestroyed(this);
                 // A la flota le enviamos la referencia de la nave (el GO) para que lo destruya y lleve
                 // la cuenta de cuántas naves de la flota quedan
                 GetComponentInParent<FleetController>().shipDestroyed(this.gameObject);
