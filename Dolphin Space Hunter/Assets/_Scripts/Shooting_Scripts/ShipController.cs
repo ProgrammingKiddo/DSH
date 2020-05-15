@@ -17,7 +17,7 @@ public class ShipController : MonoBehaviour
         public FleetController.ShipMovementPattern shipPattern;
         public int initialHealth = 10;
     
-        public Vector3 movementVector = Vector3.zero;
+        public Vector3 movementVector = new Vector3(1f, 1f, 0f);
     Vector3 startingPosition;
 
     // Atributos privados

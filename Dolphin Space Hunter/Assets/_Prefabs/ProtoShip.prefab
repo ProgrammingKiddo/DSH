@@ -56,9 +56,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 25
   speed: 20
-  shipPattern: 1
-  initialHealth: 10
-  movementVector: {x: 0, y: 0, z: 0}
+  shipPattern: 4
+  initialHealth: 15
+  movementVector: {x: 1, y: 1, z: 0}
 --- !u!65 &976313539143041422
 BoxCollider:
   m_ObjectHideFlags: 0

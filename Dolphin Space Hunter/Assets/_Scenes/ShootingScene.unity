@@ -498,7 +498,7 @@ Transform:
   - {fileID: 952242062}
   - {fileID: 1656045816}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &321309861
 Mesh:
@@ -1555,7 +1555,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &706681550
 MonoBehaviour:
@@ -2361,7 +2361,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1660581371}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2580,9 +2581,9 @@ MonoBehaviour:
   ShipModel: {fileID: 9176836104136742019, guid: 3b9de9879819a2648a259b24dbc078ee,
     type: 3}
   shipsPattern: 0
-  fleetPattern: 0
-  initialNumberOfShips: 0
-  speed: 3
+  fleetPattern: 4
+  initialNumberOfShips: 4
+  speed: 5
 --- !u!4 &1660581371
 Transform:
   m_ObjectHideFlags: 0
@@ -2590,7 +2591,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660581368}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1850}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2599,8 +2600,8 @@ Transform:
   - {fileID: 570055061}
   - {fileID: 15666201}
   - {fileID: 381766989}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1391295412}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691026014
 GameObject:
@@ -2931,7 +2932,7 @@ RectTransform:
   - {fileID: 2023085722}
   - {fileID: 740012868}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

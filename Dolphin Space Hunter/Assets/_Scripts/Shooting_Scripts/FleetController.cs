@@ -48,7 +48,7 @@ public class FleetController : MonoBehaviour
 
         private Vector3 shipsErraticMovement = Vector3.zero;
         private float angle;
-        private float radius;
+        private float radius = 10;
         private float circleStep;
 
     #endregion
@@ -61,24 +61,8 @@ public class FleetController : MonoBehaviour
         fleetTransform = this.gameObject.transform;
         startingPosition = fleetTransform.position;
 
-        // Si la flota tiene un patrón de movimiento errático,
-        // creamos para ella un vector de movimiento
-        if (fleetPattern == FleetMovementPattern.Erratic)
-        {
-            movementVector = new Vector3(Random.Range(0.2f, 1f),
-                                                Random.Range(0.2f, 1f),
-                                                0f);
-        }
-        // Si las naves de la flota tienen un patrón de movimiento errático,
-        // creamos para ellas un vector de movimiento diferente
-        if (shipsPattern == ShipMovementPattern.Erratic)
-        {
-            shipsErraticMovement = new Vector3(Random.Range(0.2f, 1f),
-                                            Random.Range(0.2f, 1f),
-                                            0f);
-        }
-        circleStep = 360f * Time.fixedDeltaTime;
-        angle = 0f;
+        setPatternAttributes();
+        
         //StartCoroutine(SpawnShips());
         numberOfShips = initialNumberOfShips;
     }
@@ -121,6 +105,35 @@ public class FleetController : MonoBehaviour
         }
     }
 
+    private void setPatternAttributes()
+    {
+        if (fleetPattern == FleetMovementPattern.Horizontal)
+        {
+            movementVector = new Vector3(1f, 0f, 0f);
+        }
+        if (fleetPattern == FleetMovementPattern.Vertical)
+        {
+            movementVector = new Vector3(0f, 1f, 0f);
+        }
+        // Si la flota tiene un patrón de movimiento errático,
+        // creamos para ella un vector de movimiento
+        if (fleetPattern == FleetMovementPattern.Erratic)
+        {
+            movementVector = new Vector3(Random.Range(0.2f, 1f),
+                                                Random.Range(0.2f, 1f),
+                                                0f);
+        }
+        // Si las naves de la flota tienen un patrón de movimiento errático,
+        // creamos para ellas un vector de movimiento diferente
+        if (shipsPattern == ShipMovementPattern.Erratic)
+        {
+            shipsErraticMovement = new Vector3(Random.Range(0.2f, 1f),
+                                            Random.Range(0.2f, 1f),
+                                            0f);
+        }
+        circleStep = 360f * Time.fixedDeltaTime;
+        angle = 0f;
+    }
 
     private void lateralMovement()
     {
