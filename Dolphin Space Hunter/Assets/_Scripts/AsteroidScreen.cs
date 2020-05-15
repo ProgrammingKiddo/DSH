@@ -13,6 +13,7 @@ public class AsteroidScreen : MonoBehaviour
     private Thread create,hit;
     public GUISteroid canvasVida;
     private int aux=0,actual=100;
+    public Camera camaraAr;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class AsteroidScreen : MonoBehaviour
         //gol.Start();
         canvasVida = GetComponent<GUISteroid>();
         imagenAsteroides = GetComponent<ImageTargetBehaviour>();
+        camaraAr = GetComponent<Camera>();
 
 
     }
@@ -36,7 +38,6 @@ public class AsteroidScreen : MonoBehaviour
     {
 
     }
-
     private void isHit()
     {
        // while (true)
