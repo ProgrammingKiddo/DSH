@@ -15,7 +15,9 @@ public class FleetController : MonoBehaviour
     public GameObject ShipModel;
     public enum ShipMovementPattern
     {
-        Lateral,
+        Still,
+        Horizontal,
+        Vertical,
         Erratic,
         Circular,
         DoubleCircular
@@ -24,8 +26,9 @@ public class FleetController : MonoBehaviour
 
     public enum FleetMovementPattern
     {
-        Quiet,
-        Lateral,
+        Still,
+        Horizontal,
+        Vertical,
         Erratic,
         Circular
     };
@@ -41,6 +44,8 @@ public class FleetController : MonoBehaviour
     private int numberOfShips = 0;
     private Vector3 startingPosition;
     private Vector3 fleetMovementVector;
+
+    private Vector3 shipsErraticMovement = Vector3.zero;
     #endregion
 
 
@@ -51,9 +56,22 @@ public class FleetController : MonoBehaviour
         fleetTransform = this.gameObject.transform;
         startingPosition = fleetTransform.position;
 
-        fleetMovementVector = new Vector3(Random.Range(0.2f, 1f),
+        // Si la flota tiene un patrón de movimiento errático,
+        // creamos para ella un vector de movimiento
+        if (fleetPattern == FleetMovementPattern.Erratic)
+        {
+            fleetMovementVector = new Vector3(Random.Range(0.2f, 1f),
+                                                Random.Range(0.2f, 1f),
+                                                0f);
+        }
+        // Si las naves de la flota tienen un patrón de movimiento errático,
+        // creamos para ellas un vector de movimiento diferente
+        if (shipsPattern == ShipMovementPattern.Erratic)
+        {
+            shipsErraticMovement = new Vector3(Random.Range(0.2f, 1f),
                                             Random.Range(0.2f, 1f),
-                                            0f) * speed;
+                                            0f);
+        }
         //StartCoroutine(SpawnShips());
         numberOfShips = initialNumberOfShips;
     }
@@ -76,7 +94,7 @@ public class FleetController : MonoBehaviour
 
         // Multiplicamos el movimiento por Time.fixedDeltaTime (el tiempo de ejecución de cada paso de físicas
         // para coordinar el movimiento de la flota con el de los cuerpos físicos de la escena.
-        fleetTransform.Translate(fleetMovementVector);
+        fleetTransform.Translate(fleetMovementVector * speed);
         
     }
 
@@ -85,10 +103,15 @@ public class FleetController : MonoBehaviour
     IEnumerator SpawnShips()
     {
         GameObject tempShipRef;
+        
         while (createdShips < initialNumberOfShips)
         {
             tempShipRef = Instantiate(ShipModel, this.gameObject.transform, false);
-            tempShipRef.GetComponent<ShipController>().dolphinPattern = shipsPattern;
+            tempShipRef.GetComponent<ShipController>().shipPattern = shipsPattern;
+            if (shipsPattern == ShipMovementPattern.Erratic)
+            {
+                tempShipRef.GetComponent<ShipController>().movementVector = shipsErraticMovement;
+            }
             ships.Add(tempShipRef);
             createdShips++;
             yield return new WaitForSecondsRealtime(1.3f);

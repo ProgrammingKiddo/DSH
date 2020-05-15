@@ -13,16 +13,18 @@ public class ShipController : MonoBehaviour
     #region Variables
     public float radius;
     public float speed;
-    public FleetController.ShipMovementPattern dolphinPattern;
+    public FleetController.ShipMovementPattern shipPattern;
     public int initialHealth = 10;
     
+    public Vector3 movementVector = Vector3.zero;
+    Vector3 startingPosition;
 
-    private Transform dolphinTransform;
+    private Transform shipTransform;
     private Transform fleetTransform;
-    private Vector3 movementVector = Vector3.zero;
+    private int remainingHealth;
+    // Atributos de movimiento
     private float circleStep;
     private float angle = 0f;
-    private int remainingHealth;
     #endregion
 
 
@@ -30,34 +32,40 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
-        dolphinTransform = GetComponent<Transform>();
+        shipTransform = GetComponent<Transform>();
+        startingPosition = shipTransform.position;
         fleetTransform = GetComponentInParent<Transform>();
 
-        // How many seconds to perform a whole circular movement
-        circleStep = 360f * Time.fixedDeltaTime;
+        setPatternAttributes();
+
         remainingHealth = initialHealth;
 
     }
 
     void Update()
     {
-        //Debug.Log("xAxis Accel: " + Input.acceleration.x + ", yAxis Accel:" + Input.acceleration.y);
+
     }
 
     private void FixedUpdate()
     {
-        // Usamos las funciones de seno y coseno para calcular la siguiente posición de la nave
-        movementVector.x = Mathf.Cos((angle +45f) * Mathf.Deg2Rad);
-        movementVector.y = Mathf.Sin((angle +45f) * Mathf.Deg2Rad);
-
-        // "Reseteamos" la variable para evitar desbordamientos
-        angle += circleStep;
-        if (angle > 360f)
+        switch (shipPattern)
         {
-            angle -= 360f;
+            case FleetController.ShipMovementPattern.Horizontal:
+            case FleetController.ShipMovementPattern.Vertical:
+            case FleetController.ShipMovementPattern.Erratic:
+                lateralMovement();
+                break;
+            case FleetController.ShipMovementPattern.Circular:
+                circularMovement();
+                break;
+            case FleetController.ShipMovementPattern.DoubleCircular:
+                doubleCircularMovement();
+                break;
+            // Still, la nave no se mueve
+            default:
+                break;
         }
-
-        dolphinTransform.Translate(movementVector * radius, fleetTransform);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,4 +92,69 @@ public class ShipController : MonoBehaviour
 
     #endregion
 
+    private void setPatternAttributes()
+    {
+        if (shipPattern == FleetController.ShipMovementPattern.Horizontal)
+        {
+            movementVector = new Vector3(1f, 0f, 0f);
+        }
+        if (shipPattern == FleetController.ShipMovementPattern.Vertical)
+        {
+            movementVector = new Vector3(0f, 1f, 0f);
+        }
+
+        // Para el patrón de movimiento errático, el vector de movimiento ya
+        // nos viene dado desde la flota, para que todas las naves se muevan igual
+
+        // Si la nave tiene un patrón de movimiento circular o doble-circular,
+        // calculamos el nº de grados que recorrerá en cada paso de físicas
+        if (shipPattern == FleetController.ShipMovementPattern.Circular
+            || shipPattern == FleetController.ShipMovementPattern.DoubleCircular)
+        {
+            // How many seconds to perform a whole circular movement
+            circleStep = 360f * Time.fixedDeltaTime;
+        }
+
+    }
+
+    private void lateralMovement()
+    {
+        checkInBounds();
+        shipTransform.Translate(movementVector * speed);
+    }
+
+    private void circularMovement()
+    {
+        // Usamos las funciones de seno y coseno para calcular la siguiente posición de la nave
+        movementVector.x = Mathf.Cos((angle +45f) * Mathf.Deg2Rad);
+        movementVector.y = Mathf.Sin((angle +45f) * Mathf.Deg2Rad);
+
+        // "Reseteamos" la variable para evitar desbordamientos
+        angle += circleStep;
+        if (angle > 360f)
+        {
+            angle -= 360f;
+        }
+
+        shipTransform.Translate(movementVector * radius, fleetTransform);
+    }
+
+    private void doubleCircularMovement()
+    {
+
+    }
+
+    // Método para asegurarnos de que, en los movimientos no-circulares, nos mantenemos
+    // en un rango de espacio concreto alrededor de la posición inicial
+    private void checkInBounds()
+    {
+        if (Mathf.Abs(shipTransform.position.x - startingPosition.x) > 500)
+        {
+            movementVector.x *= -1;
+        }
+        if (Mathf.Abs(shipTransform.position.y - startingPosition.y) > 500)
+        {
+            movementVector.y *= -1;
+        }
+    }
 }
