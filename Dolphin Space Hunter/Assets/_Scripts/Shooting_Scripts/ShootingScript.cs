@@ -20,6 +20,7 @@ public class ShootingScript : MonoBehaviour
     public GameObject Gun1;
     public GameObject Gun2;
 
+    public List<AudioClip> shootingSFX;
 
     Touch shootTouch;
     bool shooting = false;
@@ -28,7 +29,10 @@ public class ShootingScript : MonoBehaviour
     private Vector3 leftProjectileSpawn;
     private Vector3 rightProjectileSpawn;
 
+    // Iterador para intercalar el disparo entre armas
     private int i = 0;
+    // Iterador para intercalar el sonido de disparo
+    private int j = 0;
     #endregion
 
 
@@ -61,6 +65,7 @@ public class ShootingScript : MonoBehaviour
     {
         if (shooting)
         {
+            this.gameObject.GetComponent<AudioSource>().PlayOneShot(shootingSFX[j]);
             // Alternar disparo entre ambas armas
             if (i % 2 == 0)
             {
@@ -71,7 +76,9 @@ public class ShootingScript : MonoBehaviour
                 Gun2.GetComponent<ShootProjectile>().Shoot(Projectile);
             }
             i++;
+            j++;
             if (i == 2) i = 0;
+            if (j == 3) j = 0;
             shooting = false;
         }
     }
