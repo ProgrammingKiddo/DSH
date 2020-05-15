@@ -11,9 +11,8 @@ public class FleetController : MonoBehaviour
 {
 
     #region Variables
-
-    public GameObject ShipModel;
-    public enum ShipMovementPattern
+    // Declaración de enums
+        public enum ShipMovementPattern
     {
         Still,
         Horizontal,
@@ -22,9 +21,7 @@ public class FleetController : MonoBehaviour
         Circular,
         DoubleCircular
     };
-    public ShipMovementPattern shipsPattern;
-
-    public enum FleetMovementPattern
+        public enum FleetMovementPattern
     {
         Still,
         Horizontal,
@@ -32,20 +29,28 @@ public class FleetController : MonoBehaviour
         Erratic,
         Circular
     };
-    public FleetMovementPattern fleetPattern;
 
-    public int initialNumberOfShips = 0;
-    public int behaviour;
-    public float speed;
+    // Atributos públicos
+        public GameObject ShipModel;
+        public ShipMovementPattern shipsPattern;
+        public FleetMovementPattern fleetPattern;
 
-    private List<GameObject> ships;
-    private Transform fleetTransform;
-    private int createdShips = 0;
-    private int numberOfShips = 0;
-    private Vector3 startingPosition;
-    private Vector3 fleetMovementVector;
+        public int initialNumberOfShips = 0;
+        public float speed;
 
-    private Vector3 shipsErraticMovement = Vector3.zero;
+    // Atributos privados
+        private List<GameObject> ships;
+        private Transform fleetTransform;
+        private int createdShips = 0;
+        private int numberOfShips = 0;
+        private Vector3 startingPosition;
+        private Vector3 movementVector;
+
+        private Vector3 shipsErraticMovement = Vector3.zero;
+        private float angle;
+        private float radius;
+        private float circleStep;
+
     #endregion
 
 
@@ -60,7 +65,7 @@ public class FleetController : MonoBehaviour
         // creamos para ella un vector de movimiento
         if (fleetPattern == FleetMovementPattern.Erratic)
         {
-            fleetMovementVector = new Vector3(Random.Range(0.2f, 1f),
+            movementVector = new Vector3(Random.Range(0.2f, 1f),
                                                 Random.Range(0.2f, 1f),
                                                 0f);
         }
@@ -72,30 +77,28 @@ public class FleetController : MonoBehaviour
                                             Random.Range(0.2f, 1f),
                                             0f);
         }
+        circleStep = 360f * Time.fixedDeltaTime;
+        angle = 0f;
         //StartCoroutine(SpawnShips());
         numberOfShips = initialNumberOfShips;
     }
 
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(fleetTransform.position.x - startingPosition.x) > 500)
+        switch(fleetPattern)
         {
-            fleetMovementVector.x *= -1;
+            case FleetMovementPattern.Horizontal:
+            case FleetMovementPattern.Vertical:
+            case FleetMovementPattern.Erratic:
+                lateralMovement();
+                break;
+            case FleetMovementPattern.Circular:
+                circularMovement();
+                break;
+            default:
+                break;
         }
-        if (Mathf.Abs(fleetTransform.position.y - startingPosition.y) > 500)
-        {
-            fleetMovementVector.y *= -1;
-        }
-
-        // Multiplicamos el movimiento por Time.fixedDeltaTime (el tiempo de ejecución de cada paso de físicas
-        // para coordinar el movimiento de la flota con el de los cuerpos físicos de la escena.
-        fleetTransform.Translate(fleetMovementVector * speed);
-        
     }
 
     #endregion
@@ -115,6 +118,45 @@ public class FleetController : MonoBehaviour
             ships.Add(tempShipRef);
             createdShips++;
             yield return new WaitForSecondsRealtime(1.3f);
+        }
+    }
+
+
+    private void lateralMovement()
+    {
+        checkInBounds();
+        // Multiplicamos el movimiento por Time.fixedDeltaTime (el tiempo de ejecución de cada paso de físicas
+        // para coordinar el movimiento de la flota con el de los cuerpos físicos de la escena.
+        fleetTransform.Translate(movementVector * speed);
+    }
+
+    private void circularMovement()
+    {
+        // Usamos las funciones de seno y coseno para calcular la siguiente posición de la nave
+        movementVector.x = Mathf.Cos((angle + 45f) * Mathf.Deg2Rad);
+        movementVector.y = Mathf.Sin((angle + 45f) * Mathf.Deg2Rad);
+
+        // "Reseteamos" la variable para evitar desbordamientos
+        angle += circleStep;
+        if (angle > 360f)
+        {
+            angle -= 360f;
+        }
+
+        fleetTransform.Translate(movementVector * radius, fleetTransform);
+    }
+
+    // Método para asegurarnos de que, en los movimientos no-circulares, nos mantenemos
+    // en un rango de espacio concreto alrededor de la posición inicial
+    private void checkInBounds()
+    {
+        if (Mathf.Abs(fleetTransform.position.x - startingPosition.x) > 500)
+        {
+            movementVector.x *= -1;
+        }
+        if (Mathf.Abs(fleetTransform.position.y - startingPosition.y) > 500)
+        {
+            movementVector.y *= -1;
         }
     }
 

@@ -11,20 +11,22 @@ public class ShipController : MonoBehaviour
 {
 
     #region Variables
-    public float radius;
-    public float speed;
-    public FleetController.ShipMovementPattern shipPattern;
-    public int initialHealth = 10;
+    // Atributos públicos
+        public float radius;
+        public float speed;
+        public FleetController.ShipMovementPattern shipPattern;
+        public int initialHealth = 10;
     
-    public Vector3 movementVector = Vector3.zero;
+        public Vector3 movementVector = Vector3.zero;
     Vector3 startingPosition;
 
-    private Transform shipTransform;
-    private Transform fleetTransform;
-    private int remainingHealth;
-    // Atributos de movimiento
-    private float circleStep;
-    private float angle = 0f;
+    // Atributos privados
+        private Transform shipTransform;
+        private Transform fleetTransform;
+        private int remainingHealth;
+        // Atributos de movimiento
+        private float circleStep;
+        private float angle;
     #endregion
 
 
@@ -113,6 +115,7 @@ public class ShipController : MonoBehaviour
         {
             // How many seconds to perform a whole circular movement
             circleStep = 360f * Time.fixedDeltaTime;
+            angle = 0f;
         }
 
     }

@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9176836104136742019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200, y: 200, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 3494436202334004639}
@@ -55,9 +55,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 25
-  speed: 1
-  dolphinPattern: 2
-  health: 10
+  speed: 20
+  shipPattern: 1
+  initialHealth: 10
+  movementVector: {x: 0, y: 0, z: 0}
 --- !u!65 &976313539143041422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,8 +70,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.833087, y: 0.8468582, z: 3.1481678}
-  m_Center: {x: 0.005811386, y: 0.24999997, z: -0.36341584}
+  m_Size: {x: 1.9572738, y: 1.8183879, z: 2.9727373}
+  m_Center: {x: 0.004988861, y: 0.23992835, z: 0.3751878}
 --- !u!1001 &3494436202334142239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,11 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92bef5ab3696efe4e81b47284a28bc07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09366714
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92bef5ab3696efe4e81b47284a28bc07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.089259945
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92bef5ab3696efe4e81b47284a28bc07, type: 3}
       propertyPath: m_LocalRotation.x
