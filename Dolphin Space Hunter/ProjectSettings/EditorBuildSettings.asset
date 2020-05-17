@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/ShootingScene.unity
     guid: 4493ef943ba18a347991827f2418d6a7
+  - enabled: 1
+    path: Assets/_Scenes/AsteroidScene.unity
+    guid: 87905a096ebf4a647afff26e88e78e60
   m_configObjects: {}
