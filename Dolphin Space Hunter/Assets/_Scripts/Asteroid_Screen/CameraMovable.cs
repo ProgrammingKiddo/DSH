@@ -21,19 +21,22 @@ public class CameraMovable : MonoBehaviour
     float LowPassKernelWidthInSeconds = 1.0f;
     float factorFiltro = 0;
     public GUISteroid canvasVida;
-    private bool sinEscudo;
-    private int actual;
+    private bool sinEscudo, isRunning; //Global para comprobar si tenemois escudo
+    private int escudoActual;//Escudo actual
+    public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
     AudioSource sonidoChoque;
     Vector3 valorCrudo = Vector3.zero;
+    public GameObject explosion;
+
 
     void Start()
     {
+        isRunning = false;
         canvasVida.golpeado(100);
-        actual = 100;
+        escudoActual = 100;//
         factorFiltro = IntervaloAc / LowPassKernelWidthInSeconds;
         valorCrudo = Input.acceleration;
         sonidoChoque = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
@@ -92,21 +95,57 @@ public class CameraMovable : MonoBehaviour
 
     }
 
+    void ShakeCamera()
+    {
+
+        startAmount = 40;//Set default (start) values
+        startDuration = 40;//Set default (start) values
+        shakeDuration = 20;
+        if (!isRunning) { StartCoroutine(Shake()); Debug.Log("eNTRO"); }//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+    }
+
+	IEnumerator Shake() {
+		isRunning = true;
+        float shakePercentage;
+        bool smooth = true;
+		while (shakeDuration > 0.01f) {
+			Vector3 rotationAmount = Random.insideUnitSphere * shakeAmount;//A Vector3 to add to the Local Rotation
+			rotationAmount.z = 0;//Don't change the Z; it looks funny.
+ 
+			shakePercentage = shakeDuration / startDuration;//Used to set the amount of shake (% * startAmount).
+ 
+			shakeAmount = startAmount * shakePercentage;//Set the amount of shake (% * startAmount).
+			shakeDuration = Mathf.Lerp(shakeDuration, 0, Time.deltaTime);//Lerp the time, so it is less and tapers off towards the end.
+ 
+ 
+			if(smooth)
+				 transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationAmount), Time.deltaTime * smoothAmount);
+			else
+				transform.localRotation = Quaternion.Euler (rotationAmount);//Set the local rotation the be the rotation amount.
+ 
+			yield return null;
+		}
+        transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
+		isRunning = false;
+	}
+ 
+
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("cOLISSION");
         if (other.gameObject.tag == "Enemy")
         {
             sonidoChoque.Play();
-            actual -= 10; //facil
-            canvasVida.golpeado(actual);
-            if (actual <= 0)
+            escudoActual -= 10; //facil
+            canvasVida.golpeado(escudoActual);
+            ShakeCamera();
+            if (escudoActual <= 0)
             {
                 if (sinEscudo)
                 {
+                    Instantiate(explosion, new Vector3(0, -2, 5), Quaternion.identity);
+                    //Insertar espera?
                     SceneManager.LoadScene("gameOver");//cargar GAME OVER
-
                 }
                 else
                 {

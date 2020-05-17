@@ -61,28 +61,4 @@ public class AsteroidMovable : MonoBehaviour
 
     }
 
-  /*  IEnumerator movAsteroid()
-    {
-        //childObject.transform.parent.gameObject
-        initZ -= vel; //vel
-        asteroid.transform.Translate(0, 0, initZ);
-        if (asteroid.transform.position.z <= limit && this.transform.parent.gameObject == imagen.gameObject)
-        {
-            Debug.Log("destruido");
-            Destroy(asteroid);
-            Destroy(this.gameObject);
-        }
-        if (asteroid.transform.position.z <= limit && this.transform.parent.gameObject != imagen.gameObject)
-        {
-            Debug.Log("parado");
-           // Destroy(asteroid);
-
-        }
-        yield return new WaitForSeconds(.1f);
-    }
-    */
-
-
-
-
 }
