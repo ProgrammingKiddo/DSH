@@ -1,4 +1,14 @@
-﻿using System.Collections;
+﻿/*
+ * Copyright (c) Sergio Ruiz
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using Vuforia;
 using UnityEngine;
@@ -9,7 +19,7 @@ public class AsteroidMovable : MonoBehaviour
     private GameObject asteroid;
     private float initX, initY, initZ = 2000;
     public Camera MyCamera;
-    public float vel;
+    public float vel,radio;
 
 
     // Start is called before the first frame update
@@ -45,6 +55,7 @@ public class AsteroidMovable : MonoBehaviour
             asteroid = Instantiate(asteroid, new Vector3(initX, initY, initZ), Quaternion.identity);
             asteroid.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,vel);
             asteroid.transform.localScale = new Vector3(75f, 75f, 75f);//tam asteroides DIFICULTA cambiar
+            asteroid.GetComponent<SphereCollider>().radius = radio;
             yield return new WaitForSecondsRealtime(1.0f);
         }
 

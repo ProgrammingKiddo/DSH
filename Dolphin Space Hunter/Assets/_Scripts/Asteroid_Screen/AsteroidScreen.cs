@@ -1,83 +1,35 @@
-﻿using System.Collections;
+﻿/*
+ * Copyright (c) Sergio Ruiz
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Vuforia;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 public class AsteroidScreen : MonoBehaviour
 {
     public ImageTargetBehaviour imagenAsteroides;
-    private bool sc, cs,sinEscudo;
-    private Thread create,hit;
-    public GUISteroid canvasVida;
-    private int aux=0,actual=100;
-    public Camera camaraAr;
-
+    private bool sc, cs;
     // Start is called before the first frame update
     void Start()
     {
         sc = true;
         cs = true;
-        sinEscudo = false;
-        hit = new Thread(isHit);
-        //  change = new Thread(ChangeScreen);
-        hit.Start();
-        //  change.Start();
-        //gol.Start();
-        canvasVida = GetComponent<GUISteroid>();
         imagenAsteroides = GetComponent<ImageTargetBehaviour>();
-        camaraAr = GetComponent<Camera>();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-    private void isHit()
-    {
-       // while (true)
-       // {
-            if (sc)
-            {
-                actual = actual - 10; //facil
-                canvasVida.setActual(actual);
-                canvasVida.golpeado();
-            if (actual <= 0)
-            {
-                if (sinEscudo)
-                {
-                    SceneManager.LoadScene("gameOver");//cargar GAME OVER
-
-                }else{
-                    sinEscudo = true;
-                }
-            }
-                sc = false;
-            }
-      //  }
-
-    }
-
-   /* IEnumerator CrearAsteroides()
-    {
-
-        //Thread.Sleep(1000);
-
-
-        yield return new WaitForSeconds(10.1f);
-
-
-    }*/
-
-    private void CreateSteroid()
-    {
-
-
 
     }
 

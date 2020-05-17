@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+ * Copyright (c) Sergio Ruiz
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,13 +35,14 @@ public class GUISteroid : MonoBehaviour
         
     }
 
-    public void setActual(int aux)
+    private void setActual(int aux)
     {
         actual = aux;
     }
 
-    public void golpeado()
+    public void golpeado(int valorNuevo)
     {
+        setActual(valorNuevo);
         hit = true;
     }
 
@@ -40,7 +50,5 @@ public class GUISteroid : MonoBehaviour
     {
         vida.BarValue = actual;
         yield return new WaitForSeconds(.1f);
-
-
     }
 }

@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+ * Copyright (c) Sergio Ruiz
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
