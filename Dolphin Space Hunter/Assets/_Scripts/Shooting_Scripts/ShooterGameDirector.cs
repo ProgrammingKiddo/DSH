@@ -26,6 +26,7 @@ public class ShooterGameDirector : MonoBehaviour
     private int numberOfCurrentFleets = 0;
     private int numberOfCurrentShips = 0;
 
+
     #endregion
 
     public static ShooterGameDirector Instance() { return instance; }

@@ -39,7 +39,7 @@ public class FleetController : MonoBehaviour
         public float speed;
 
     // Atributos privados
-        private List<GameObject> ships;
+        private List<GameObject> ships = new List<GameObject>();
         private Transform fleetTransform;
         private int createdShips = 0;
         private int numberOfShips = 0;

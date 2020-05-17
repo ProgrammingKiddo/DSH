@@ -26,7 +26,7 @@ public class AsteroidMovable : MonoBehaviour
     void Start()
     {
         StartCoroutine("createAsteroid");
-
+        metodoPrueba();
     }
 
 
@@ -61,4 +61,18 @@ public class AsteroidMovable : MonoBehaviour
 
     }
 
+    private void metodoPrueba()
+    {
+        ScoreboardContainer difMedia = new ScoreboardContainer();
+        difMedia.difficultyMode = "Medio";
+        difMedia.players.Add("Borja");
+        difMedia.players.Add("Antonio");
+        difMedia.players.Add("Jose");
+        difMedia.scores.Add(14000);
+        difMedia.scores.Add(7500);
+        difMedia.scores.Add(5000);
+
+        ScoreboardManager.loadScoreboard(difMedia);
+        ScoreboardManager.storeJson(difMedia);
+    }
 }
