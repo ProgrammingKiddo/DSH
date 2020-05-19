@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("AsteroidScene");
+        SceneManager.LoadScene("IntroVideoScene");
 
     }
 
