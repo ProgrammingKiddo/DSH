@@ -7,7 +7,7 @@ public class ShieldScript : MonoBehaviour
     // Start is called before the first frame update
     public RectTransform rectTransform;
     public static float Shield{get; set;}
-    
+
     // Start is called before the first frame update
     void Start()
     {
