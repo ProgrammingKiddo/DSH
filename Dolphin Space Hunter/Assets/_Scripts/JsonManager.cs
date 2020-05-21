@@ -8,13 +8,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class ScoreboardManager : MonoBehaviour
+public class JsonManager : MonoBehaviour
 {
 
-    public static void loadScoreboard(object obj)
+    public static void loadScoreboard(TextAsset JsonFile, object container)
     {
-        string jsonText = JsonUtility.ToJson(obj);
-        Debug.Log(jsonText);
+        JsonUtility.FromJsonOverwrite(JsonFile.text, container);        
     }
 
     public static void storeJson(object obj)
