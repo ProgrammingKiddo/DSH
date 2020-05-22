@@ -11,7 +11,7 @@ public class ShooterGameDirector : MonoBehaviour
 {
 
     #region Variables
-    // Vamos a utilizar este gameDirector como lo que en Unity se conoce como "Singleton"
+    // Vamos a utilizar este gameDirector como lo que se conoce como "Singleton"
     // Para ello, tenemos una instancia de una clase, que apunta como referencia estática a sí misma.
     // De esta forma, podemos acceder a todos los atributos y métodos a través 
     private static ShooterGameDirector instance  = null;

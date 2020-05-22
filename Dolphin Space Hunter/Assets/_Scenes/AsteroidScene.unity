@@ -155,7 +155,7 @@ MonoBehaviour:
   Atype3: {fileID: 130102, guid: 04d0bf4be9447154188d86f6e3b8dce9, type: 3}
   MyCamera: {fileID: 1893036865}
   vel: -500
-  radio: 1
+  JsonFile: {fileID: 4900000, guid: 3534e61a15e5998479d352fef473fdcb, type: 3}
 --- !u!4 &917283691
 Transform:
   m_ObjectHideFlags: 0
