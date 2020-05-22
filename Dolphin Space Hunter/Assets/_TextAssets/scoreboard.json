@@ -1,13 +1,13 @@
 {
-    "difficultyMode": "Medio",
+    "difficultyMode": "Difícil",
     "players": [
         "Borja",
-        "Antonio",
-        "Jose"
+        "Pablo",
+        "Pocoyo"
     ],
     "scores": [
-        14000,
-        7500,
-        5000
+        140000,
+        75,
+        2
     ]
 }

@@ -59,19 +59,19 @@ public class AsteroidMovable : MonoBehaviour
     private void metodoPrueba()
     {
         ScoreboardContainer difMedia = new ScoreboardContainer();
-            difMedia.difficultyMode = "Medio";
+            difMedia.difficultyMode = "Difícil";
             difMedia.players.Add("Borja");
-            difMedia.players.Add("Antonio");
-            difMedia.players.Add("Jose");
-            difMedia.scores.Add(14000);
-            difMedia.scores.Add(7500);
-            difMedia.scores.Add(5000);
+            difMedia.players.Add("Pablo");
+            difMedia.players.Add("Pocoyo");
+            difMedia.scores.Add(140000);
+            difMedia.scores.Add(75);
+            difMedia.scores.Add(2);
         ScoreboardContainer difficulty = new ScoreboardContainer();
-        JsonManager.loadScoreboard(JsonFile, difficulty);
+        JsonManager.loadFromJson(JsonFile, difficulty);
         Debug.Log("Modo: " + difficulty.difficultyMode + ", Jugador TOP: " + difficulty.players[0] + ", Puntuación TOP:" + difficulty.scores[0]);
 
 
         //ScoreboardManager.loadScoreboard(difMedia);
-        JsonManager.storeJson(difMedia);
+        JsonManager.storeToJson(JsonFile ,difMedia);
     }
 }
