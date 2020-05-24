@@ -33,7 +33,7 @@ public class ScoreboardDisplayer : MonoBehaviour
 
     void Start()
     {
-        scoreboard = JsonUtility.FromJson<ScoreboardContainer>(PlayerPrefs.GetString("Scoreboard"));
+        JsonUtility.FromJsonOverwrite(PlayerPrefs.GetString("Scoreboard"), scoreboard);
 
         difficultyMode = PlayerPrefs.GetString("Difficulty", "Fácil");
         difficultyText.text = difficultyMode;

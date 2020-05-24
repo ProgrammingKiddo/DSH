@@ -11,6 +11,8 @@ public class ShootingLevels_Container : MonoBehaviour
 {
 
     #region Variables
+    public int maxAmmunition;
+    public int rechargeAmmount;
     public string difficultyLevel;
     public int fleetsPerWave;
     public int wavesPerBoss;

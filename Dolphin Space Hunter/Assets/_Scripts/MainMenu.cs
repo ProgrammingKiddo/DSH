@@ -15,8 +15,10 @@ public class MainMenu : MonoBehaviour
         // Si no existe la tabla de puntuación, creamos una por defecto
         if (!PlayerPrefs.HasKey("Scoreboard"))
         {
-            PlayerPrefs.SetString("Scoreboard", JsonUtility.ToJson(defaultScoreboard));
+            PlayerPrefs.SetString("Scoreboard", defaultScoreboard.text);
         }
+            Debug.Log("b: " + PlayerPrefs.GetString("Scoreboard"));
+            Debug.Log("c: " + defaultScoreboard.text);
     }
 
     public void PlayGame()

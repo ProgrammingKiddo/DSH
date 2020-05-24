@@ -28,7 +28,6 @@ public class ShooterGameDirector : MonoBehaviour
     private int bonusModifier = 1;
     private int score = 0;
     private int remainingShield;
-    private bool noShields = false;
     private int ammunition, maxAmmunition;
     private int wave;
     private ShootingLevels_Container shootingLevel = new ShootingLevels_Container();
@@ -53,11 +52,16 @@ public class ShooterGameDirector : MonoBehaviour
 
         score = PlayerPrefs.GetInt("PlayerScore", 0);
         ammunition = PlayerPrefs.GetInt("Ammo", 0);
+        loadDifficulty();
+        PlayerPrefs.SetInt("RechargeAmmount", shootingLevel.rechargeAmmount);
+        PlayerPrefs.SetInt("MaxAmmo", shootingLevel.maxAmmunition);
+        Debug.Log("GameDirector Awake");
     }
 
     void Start()
     {
-        
+
+        Debug.Log("GameDirector Start");
     }
 
     void Update()
@@ -168,13 +172,13 @@ public class ShooterGameDirector : MonoBehaviour
         switch(PlayerPrefs.GetString("DifficultyMode", "Easy"))
         {
             case "Easy":
-                JsonManager.loadFromJson(easyDifficultyFile, shootingLevel);
+                JsonUtility.FromJsonOverwrite(easyDifficultyFile.text, shootingLevel);
                 break;
             case "Medium":
-                JsonManager.loadFromJson(mediumDifficultyFile, shootingLevel);
+                JsonUtility.FromJsonOverwrite(mediumDifficultyFile.text, shootingLevel);
                 break;
             case "Hard":
-                JsonManager.loadFromJson(hardDifficultyFile, shootingLevel);
+                JsonUtility.FromJsonOverwrite(hardDifficultyFile.text, shootingLevel);
                 break;
 
         }
