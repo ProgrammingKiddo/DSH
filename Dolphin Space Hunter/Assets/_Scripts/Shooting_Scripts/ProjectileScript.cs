@@ -25,30 +25,35 @@ public class ProjectileScript : MonoBehaviour
 
     void Start()
     {
+        //GetComponent<Rigidbody>().velocity = this.transform.forward * projectileSpeed;
         bulletTransform = GetComponent<Transform>();
         originalScale = bulletTransform.localScale;
     }
 
     void Update()
     {
-        distanceToCamera = Vector3.Distance(Camera.main.transform.position, bulletTransform.position);
-        bulletTransform.localScale = originalScale * Mathf.Clamp((distanceToCamera / Camera.main.farClipPlane), 0.15f, 0.4f);
-
-
-        if (bulletTransform.position.z > Camera.main.farClipPlane)
+        if (this.gameObject.CompareTag("PlayerProjectile") == true)
         {
-            ShooterGameDirector.Instance().missedShot();
-            Destroy(this.gameObject);
+            distanceToCamera = Vector3.Distance(Camera.main.transform.position, bulletTransform.position);
+            bulletTransform.localScale = originalScale * Mathf.Clamp((distanceToCamera / Camera.main.farClipPlane), 0.15f, 0.4f);
+
+            // Si el proyectil sale del rango de visión del eje Z, lo eliminamos
+            if (bulletTransform.position.z > Camera.main.farClipPlane
+                || bulletTransform.position.z < Camera.main.nearClipPlane)
+            {
+                // Si el proyectil perdido es del jugador, le restamos puntos
+                if (this.gameObject.CompareTag("PlayerProjectile") == true)
+                {
+                    ShooterGameDirector.Instance().missedShot();
+                }
+                Destroy(this.gameObject);
+            }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            //Destroy(collision.gameObject);
-            //Debug.Log("Enemy hit!");
-        }
+        Destroy(this.gameObject);
     }
 
     #endregion

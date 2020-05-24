@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 976313539143041422}
   - component: {fileID: 843403611849183345}
   m_Layer: 0
-  m_Name: ProtoShip
+  m_Name: Ship_A_EASY_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,9 +56,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 25
-  speed: 20
+  speed: 10
   shipPattern: 4
-  initialHealth: 15
+  initialHealth: 5
   movementVector: {x: 1, y: 1, z: 0}
 --- !u!65 &976313539143041422
 BoxCollider:
@@ -87,9 +87,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 4400967604671624117, guid: 440537276e9618a4bb0809ec1c9f4783,
     type: 3}
-  aggressiveness: 10000
-  minSpread: 50
-  maxSpread: 300
+  aggressiveness: 25000
+  minSpread: 125
+  maxSpread: 600
 --- !u!1001 &3494436202334142239
 PrefabInstance:
   m_ObjectHideFlags: 0

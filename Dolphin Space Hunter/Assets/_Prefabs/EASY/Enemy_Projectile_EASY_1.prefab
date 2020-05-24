@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 654859708479080293}
   - component: {fileID: -6603760426622480564}
   m_Layer: 0
-  m_Name: Player_Projectile_Prefab
-  m_TagString: PlayerProjectile
+  m_Name: Enemy_Projectile_EASY_1
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e40bf9bdeaf625e4a943f7c8675a23d5, type: 2}
+  - {fileID: 2100000, guid: fb7b5f464e00e1344bd966f82ef3a29c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce5d3aa8699ea43b2ad37a3938acd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 1000
+  projectileSpeed: 1500
   damage: 5

@@ -25,8 +25,8 @@ public class JsonManager : MonoBehaviour
             fileStream.Write(info, 0, info.Length);
         }*/
         //JsonFile = JsonUtility.ToJson(obj, true);
-        File.WriteAllText(AssetDatabase.GetAssetPath(JsonFile), JsonUtility.ToJson(obj, true));
-        EditorUtility.SetDirty(JsonFile);
+        //File.WriteAllText(AssetDatabase.GetAssetPath(JsonFile), JsonUtility.ToJson(obj, true));
+        //EditorUtility.SetDirty(JsonFile);
     }
    
 }

@@ -11,40 +11,50 @@ public class TurretAiming : MonoBehaviour
 {
 
     #region Variables
-    public float speed;
-
-    private Gyroscope gyro;
+    public float rotationSpeed;
+    
     #endregion
 
 
     #region UnityMethods
 
-    void Start()
-    {
-        gyro = Input.gyro;
-        gyro.enabled = true;
-    }
-
     void Update()
     {
+        float yRotation = 0f;
+        float xRotation = 0f;
 
-        /*
-        Vector3 movementVector = new Vector3(Input.acceleration.x,
-                                            Input.acceleration.y,
-                                            0f);
-        if (movementVector.sqrMagnitude > 1)
+        // z positivo = x negativo
+        // z negativo = x positivo
+        // x positivo = y positivo
+        // x negativo = y negativo
+
+        if (Mathf.Abs(Input.acceleration.x) > 0.2f)
         {
-            movementVector.Normalize();
+            yRotation = Input.acceleration.x * rotationSpeed;
         }
-        this.transform.Translate(movementVector * speed * Time.deltaTime);*/
-        this.transform.rotation = GyroToUnity(Input.gyro.attitude);
-        Debug.Log(transform.rotation);
+        if (Mathf.Abs(Input.acceleration.z) > 0.2f)
+        {
+            xRotation = -Input.acceleration.z * rotationSpeed;
+        }
+        // Sumamos la rotación a aplicar al ángulo actual
+        yRotation += this.transform.rotation.y;
+        xRotation += this.transform.rotation.x;
+        // Y nos aseguramos de mantenerlo en un ángulo de visión de 90 grados
+        yRotation = Mathf.Clamp(yRotation, -45f, 45f);
+        xRotation = Mathf.Clamp(xRotation, -45f, 45f);
+
+        this.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            ShooterGameDirector.Instance().playerHit(collision.gameObject.GetComponent<ProjectileScript>());
+            Debug.Log("I'm hit!");
+        }
     }
 
     #endregion
 
-    private static Quaternion GyroToUnity(Quaternion q)
-    {
-        return new Quaternion(q.x, q.y, -q.z, -q.w);
-    }
 }
