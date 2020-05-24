@@ -27,9 +27,9 @@ public class ShipShooter : MonoBehaviour
 
     void Update()
     {
-        // Cada nave tiene una probabilidad entre 1000 de disparar en cada paso del Update
+        // Cada nave tiene una probabilidad entre 'aggressiveness' de disparar en cada paso del Update
         // Con cada paso en el que NO dispara, se incrementa en 1 la posibilidad de que dispare
-        // Cuando dispara, ese contador se reinicia, y la probabilidad vuelve a ser de 1/1000
+        // Cuando dispara, ese contador se reinicia, y la probabilidad vuelve a ser de 1/aggressiveness
         if (Random.Range(0, aggressiveness) <= iterations)
         {
             iterations = 0;

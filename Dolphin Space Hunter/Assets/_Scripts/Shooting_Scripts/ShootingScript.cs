@@ -47,14 +47,15 @@ public class ShootingScript : MonoBehaviour
         leftProjectileSpawn = gameCamera.transform.position + new Vector3(-80f, -75f, 400f);
         rightProjectileSpawn = gameCamera.transform.position + new Vector3(80f, -75f, 400f);
 
-        // Si se detecta algún toque, y no se está disparando en este momento
-        if (Input.touchCount > 0 && !shooting)
+        // Si se detecta algún toque, no se está disparando en este momento, y tenemos munición
+        if (Input.touchCount > 0 && !shooting && ShooterGameDirector.Instance().ammunition > 0)
         {
             // Cogemos solo el primer toque (para evitar múltiples disparos tocando con varios dedos
             shootTouch = Input.GetTouch(0);
             // Solo hacemos un disparo por toque, evitando que un toque prolongado resulte en varios disparos
             if (shootTouch.phase == TouchPhase.Began)
             {
+                ShooterGameDirector.Instance().ammoConsumption();
                 shooting = true;
             }
         }

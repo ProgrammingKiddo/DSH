@@ -20,6 +20,9 @@ public class ShooterGameDirector : MonoBehaviour
     public GameObject player;
     public ShootingInterfaceManager shootingInterfaceManager;
     public AudioClip explosionSound;
+    public int ammunition;
+    public ProgressBar shieldBar;
+    public TextAsset easyDifficultyFile, mediumDifficultyFile, hardDifficultyFile;
 
     private GameObject activeFleets;
     private int numberOfCurrentFleets = 0;
@@ -27,11 +30,10 @@ public class ShooterGameDirector : MonoBehaviour
 
     private int bonusModifier = 1;
     private int score = 0;
-    private int remainingShield;
-    private int ammunition, maxAmmunition;
+    private int remainingShield = 10;
+    private int maxAmmunition;
     private int wave;
     private ShootingLevels_Container shootingLevel = new ShootingLevels_Container();
-    private TextAsset easyDifficultyFile, mediumDifficultyFile, hardDifficultyFile;
 
     #endregion
 
@@ -51,11 +53,12 @@ public class ShooterGameDirector : MonoBehaviour
         }
 
         score = PlayerPrefs.GetInt("PlayerScore", 0);
-        ammunition = PlayerPrefs.GetInt("Ammo", 0);
+        ammunition = PlayerPrefs.GetInt("Ammo", 50);
         loadDifficulty();
         PlayerPrefs.SetInt("RechargeAmmount", shootingLevel.rechargeAmmount);
         PlayerPrefs.SetInt("MaxAmmo", shootingLevel.maxAmmunition);
         Debug.Log("GameDirector Awake");
+        shieldBar.BarValue = remainingShield;
     }
 
     void Start()
@@ -73,6 +76,12 @@ public class ShooterGameDirector : MonoBehaviour
     }
 
     #endregion
+
+    public void ammoConsumption()
+    {
+        ammunition--;
+        shootingInterfaceManager.updateAmmunition(ammunition);
+    }
 
     public void missedShot()
     {
@@ -117,6 +126,7 @@ public class ShooterGameDirector : MonoBehaviour
         {
             remainingShield = 0;
         }
+        shieldBar.BarValue = remainingShield;
 
     }
 

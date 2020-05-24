@@ -29,20 +29,15 @@ public class GUISteroid : MonoBehaviour
     {
         if (hit)
         {
-            StartCoroutine("setVida"); //LLamar a setActual
+            StartCoroutine(setVida()); //LLamar a setActual
             hit = false;
         }
         
     }
 
-    private void setActual(int aux)
-    {
-        actual = aux;
-    }
-
     public void golpeado(int valorNuevo)
     {
-        setActual(valorNuevo);
+        actual = valorNuevo;
         hit = true;
     }
 

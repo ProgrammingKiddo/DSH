@@ -28,11 +28,11 @@ public class TurretAiming : MonoBehaviour
         // x positivo = y positivo
         // x negativo = y negativo
 
-        if (Mathf.Abs(Input.acceleration.x) > 0.2f)
+        if (Mathf.Abs(Input.acceleration.x) > 0.1f)
         {
             yRotation = Input.acceleration.x * rotationSpeed;
         }
-        if (Mathf.Abs(Input.acceleration.z) > 0.2f)
+        if (Mathf.Abs(Input.acceleration.z) > 0.1f)
         {
             xRotation = -Input.acceleration.z * rotationSpeed;
         }

@@ -3,6 +3,7 @@
  *
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +16,9 @@ public class ShootingInterfaceManager : MonoBehaviour
     #region Variables
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bonusText;
+
+    public TextMeshProUGUI currentAmmunitionText;
+    public TextMeshProUGUI maxAmmunitionText;
     #endregion
 
 
@@ -24,6 +28,9 @@ public class ShootingInterfaceManager : MonoBehaviour
     {
         updateScore(0);
         updateBonusModifier(1);
+        //maxAmmunitionText.text = "/ " + PlayerPrefs.GetInt("MaxAmmo", 0).ToString();
+        maxAmmunitionText.text = "/ 120";
+        updateAmmunition(ShooterGameDirector.Instance().ammunition);
     }
 
     void Update()
@@ -36,12 +43,15 @@ public class ShootingInterfaceManager : MonoBehaviour
     public void updateScore(int newScore)
     {
         scoreText.text = newScore.ToString();
-        //Debug.Log("Score updated to " + newScore);
     }
 
     public void updateBonusModifier(int newBonus)
     {
         bonusText.text = "x" + newBonus.ToString();
-        Debug.Log("Multiplier updated to " + newBonus);
+    }
+
+    public void updateAmmunition(int newAmmunition)
+    {
+        currentAmmunitionText.text = newAmmunition.ToString();
     }
 }
