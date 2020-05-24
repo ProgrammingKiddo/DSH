@@ -17,7 +17,7 @@ public class ShieldScript : MonoBehaviour
         Shield = PlayerPrefs.GetFloat("Shield", 0f);
         currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
         maxAmmunition = PlayerPrefs.GetInt("maxAmmo", 50);
-        currentScore = PlayerPrefs.GetInt("Score", 0);
+        currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
         
         scorePanel.text = "Score: " + currentScore.ToString();
         ammunitionCounter.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
