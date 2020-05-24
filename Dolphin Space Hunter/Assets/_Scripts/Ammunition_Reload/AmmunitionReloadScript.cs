@@ -22,12 +22,11 @@ public class AmmunitionReloadScript : MonoBehaviour
     void Start()
     {
         currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
-        maxAmmunition = PlayerPrefs.GetInt("MaxAmmo", 50);
-        currentShield = PlayerPrefs.GetFloat("Shield", 100f);
+        maxAmmunition = PlayerPrefs.GetInt("MaAmmo", 100);
+        currentShield = PlayerPrefs.GetInt("Shield", 100);
         currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
-        indicatorSpeed = PlayerPrefs.GetInt("reloadBarSpeed", 250);
-
-        //shieldBar.BarValue = currentShield;
+        indicatorSpeed = PlayerPrefs.GetInt("reloadBarSpeed", 500);
+        shieldBar.BarValue = currentShield;
         ammunitionCounter.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
         setAmmounitionCounterColor();
         scorePanel.text = "Score: " + currentScore.ToString();
@@ -38,7 +37,7 @@ public class AmmunitionReloadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown("space") && currentAmmunition<maxAmmunition){
+        Debug.Log(currentAmmunition + " " + maxAmmunition + " " + currentShield + " " + currentScore + " " + indicatorSpeed);
         if(Input.touchCount==1 && Input.GetTouch(0).phase == TouchPhase.Began && currentAmmunition<maxAmmunition){
             if(transform.localPosition.x<=colorBarRanges[0] || transform.localPosition.x>=colorBarRanges[3]){
                 currentAmmunition += (maxAmmunition/10);    //Red reload => +10% of ammo
