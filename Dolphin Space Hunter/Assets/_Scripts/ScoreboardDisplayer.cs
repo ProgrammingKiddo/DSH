@@ -19,12 +19,13 @@ public class ScoreboardDisplayer : MonoBehaviour
     public TextMeshProUGUI scoresText;
     public TextMeshProUGUI inputText;
     public TMP_InputField input;
-    public TextAsset scoreboardFile;
     public Button restartButton;
+    public Button creditsButton;
 
     private ScoreboardContainer scoreboard = new ScoreboardContainer();
     private int playerScore;
     private string playerName;
+    private string difficultyMode;
     #endregion
 
 
@@ -32,10 +33,11 @@ public class ScoreboardDisplayer : MonoBehaviour
 
     void Start()
     {
-        JsonManager.loadFromJson(scoreboardFile, scoreboard);
-        difficultyText.text = PlayerPrefs.GetString("Difficulty", "Fácil");
-        playerScore = PlayerPrefs.GetInt("PlayerScore", 750);
-        playerScore = 800;
+        scoreboard = JsonUtility.FromJson<ScoreboardContainer>(PlayerPrefs.GetString("Scoreboard"));
+
+        difficultyMode = PlayerPrefs.GetString("Difficulty", "Fácil");
+        difficultyText.text = difficultyMode;
+        playerScore = PlayerPrefs.GetInt("PlayerScore", 0);
         checkIfScoreIsHighEnough();
     }
 
@@ -49,24 +51,24 @@ public class ScoreboardDisplayer : MonoBehaviour
         int lastScore = 0;
         // Cogemos el índice de la lista que apunta a la última puntuación
         // de cada dificultad
-        switch(difficultyText.text)
+        switch(difficultyMode)
         {
-            case "Fácil":
+            case "Easy":
                 lastScore = 0;
                 break;
-            case "Medio":
+            case "Medium":
                 lastScore = 3;
                 break;
-            case "Difícil":
+            case "Hard":
                 lastScore = 6;
                 break;
         }
-        // Si la puntuación del jugador es lo suficientemente alta como para
-        // aparecer en la tabla, será al menos más alta que la del último jugador
+            // Si la puntuación del jugador es lo suficientemente alta como para
+            // aparecer en la tabla, será al menos más alta que la del último jugador
         scoreboard.scores[lastScore] = playerScore;
         scoreboard.players[lastScore] = playerName;
-        // Si la puntuación es más alta que la del segundo jugador, asignamos éste
-        // a la última puntuación, y escribimos la del jugador actual en su lugar
+            // Si la puntuación es más alta que la del segundo jugador, asignamos éste
+            // a la última puntuación, y escribimos la del jugador actual en su lugar
         if (playerScore > scoreboard.scores[lastScore+1])
         {
             scoreboard.scores[lastScore] = scoreboard.scores[lastScore+1];
@@ -83,14 +85,16 @@ public class ScoreboardDisplayer : MonoBehaviour
                 scoreboard.players[lastScore + 2] = playerName;
             }
         }
-        // Guardamos la nueva tabla de puntuación en el fichero persistente
-        JsonManager.storeToJson(scoreboardFile, scoreboard);
-        // Cargamos la correspondiente tabla de puntuación en la UI
+
+
+            // Guardamos la nueva tabla de puntuación en el fichero persistente
+        PlayerPrefs.SetString("Scoreboard", JsonUtility.ToJson(scoreboard));
+            // Cargamos la correspondiente tabla de puntuación en la UI
         loadScoreboardToUI();
-        // Desactivamos los campos de entrada de datos
+            // Desactivamos los campos de entrada de datos
         inputText.gameObject.SetActive(false);
         input.gameObject.SetActive(false);
-        // Por último activamos los campos de display de información
+            // Por último activamos los campos de display de información
         activateScoreboardFields();
     }
 
@@ -102,15 +106,15 @@ public class ScoreboardDisplayer : MonoBehaviour
     {
         int minimumScoreToBeat = 0;
 
-        switch(difficultyText.text)
+        switch(difficultyMode)
         {
-            case "Fácil":
+            case "Easy":
                 minimumScoreToBeat = scoreboard.scores[0];
                 break;
-            case "Medio":
+            case "Medium":
                 minimumScoreToBeat = scoreboard.scores[3];
                 break;
-            case "Difícil":
+            case "Hard":
                 minimumScoreToBeat = scoreboard.scores[6];
                 break;
         }
@@ -143,15 +147,15 @@ public class ScoreboardDisplayer : MonoBehaviour
     private void loadScoreboardToUI()
     {
         int lastScore = 0;
-        switch(difficultyText.text)
+        switch(difficultyMode)
         {
-            case "Fácil":
+            case "Easy":
                 lastScore = 0;
                 break;
-            case "Medio":
+            case "Medium":
                 lastScore = 3;
                 break;
-            case "Difícil":
+            case "Hard":
                 lastScore = 6;
                 break;
         }
@@ -168,6 +172,14 @@ public class ScoreboardDisplayer : MonoBehaviour
     {
         // Reiniciamos la puntuación del jugador
         PlayerPrefs.SetInt("PlayerScore", 0);
+        PlayerPrefs.SetString("DifficultyMode", "Easy");
         SceneManager.LoadScene("MainMenuScene");
+    }
+    public void toCredits()
+    {
+        // Reiniciamos la puntuación del jugador
+        PlayerPrefs.SetInt("PlayerScore", 0);
+        PlayerPrefs.SetString("DifficultyMode", "Easy");
+        SceneManager.LoadScene("Credits");
     }
 }

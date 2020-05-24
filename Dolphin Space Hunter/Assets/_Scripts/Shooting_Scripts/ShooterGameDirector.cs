@@ -31,6 +31,8 @@ public class ShooterGameDirector : MonoBehaviour
     private bool noShields = false;
     private int ammunition, maxAmmunition;
     private int wave;
+    private ShootingLevels_Container shootingLevel = new ShootingLevels_Container();
+    private TextAsset easyDifficultyFile, mediumDifficultyFile, hardDifficultyFile;
 
     #endregion
 
@@ -159,5 +161,21 @@ public class ShooterGameDirector : MonoBehaviour
         PlayerPrefs.SetInt("Wave", wave);
 
         SceneManager.LoadScene(name);
+    }
+
+    private void loadDifficulty()
+    {
+        switch(PlayerPrefs.GetString("DifficultyMode", "Easy"))
+        {
+            case "Easy":
+                JsonManager.loadFromJson(easyDifficultyFile, shootingLevel);
+                break;
+            case "Medium":
+                JsonManager.loadFromJson(mediumDifficultyFile, shootingLevel);
+                break;
+            case "Hard":
+                JsonManager.loadFromJson(hardDifficultyFile, shootingLevel);
+                break;
+        }
     }
 }

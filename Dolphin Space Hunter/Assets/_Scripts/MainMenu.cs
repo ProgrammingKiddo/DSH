@@ -25,9 +25,9 @@ public class MainMenu : MonoBehaviour
     }
 
     
-    public void OptionsGame()
+    public void Credits()
     {
-        SceneManager.LoadScene("OptionsScene");
+        SceneManager.LoadScene("Credits");
         
     }
 }
