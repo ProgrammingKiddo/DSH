@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShieldScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public RectTransform rectTransform;
-    public Text scorePanel, ammunitionCounter;
+    public TextMeshProUGUI scorePanel, ammunitionCounter;
     public static float Shield{get; set;}
     private int currentScore, currentAmmunition, maxAmmunition;
 

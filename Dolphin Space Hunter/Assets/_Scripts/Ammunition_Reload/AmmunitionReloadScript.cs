@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+//using TMPro; No reconoce el paquete
 
 public class AmmunitionReloadScript : MonoBehaviour
 {
     public int indicatorSpeed;
     public Text ammunitionCounter, scorePanel;
-    public ProgressBar shieldBar;
+    //public TextMeshProUGUI ammunitionCounter, scorePanel; //No reconoce el paquete
+    public ProgressBar shieldBar; //Funciona aunque sala este error, no se porque sale
 
     private int absMax = 49;
     private int currentAmmunition, maxAmmunition, currentScore;
@@ -25,7 +27,7 @@ public class AmmunitionReloadScript : MonoBehaviour
         currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
         indicatorSpeed = PlayerPrefs.GetInt("reloadBarSpeed", 250);
 
-        shieldBar.BarValue = currentShield;
+        //shieldBar.BarValue = currentShield;
         ammunitionCounter.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
         setAmmounitionCounterColor();
         scorePanel.text = "Score: " + currentScore.ToString();
