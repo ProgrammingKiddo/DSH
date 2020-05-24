@@ -143,9 +143,9 @@ public class CameraMovable : MonoBehaviour
             {
                 if (sinEscudo)
                 {
-                    Instantiate(explosion, new Vector3(0, -2, 5), Quaternion.identity);
+                    Instantiate(explosion, new Vector3(0f, -2f, 5f), Quaternion.identity);
                     //Insertar espera?
-                    SceneManager.LoadScene("gameOver");//cargar GAME OVER
+                    SceneManager.LoadScene("GameOverScene");//cargar GAME OVER
                 }
                 else
                 {

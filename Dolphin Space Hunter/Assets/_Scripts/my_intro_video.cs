@@ -15,7 +15,7 @@ public class my_intro_video : MonoBehaviour
      }
      void LoadScene(VideoPlayer vp)
      {
-          SceneManager.LoadScene( "AsteroidScene" );
+          SceneManager.LoadScene( "ShootingScene" );
       }
 }
 

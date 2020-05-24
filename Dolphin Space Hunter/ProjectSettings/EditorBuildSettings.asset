@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/AsteroidScene.unity
     guid: 87905a096ebf4a647afff26e88e78e60
+  - enabled: 1
+    path: Assets/_Scenes/GameOverScene.unity
+    guid: 873a886afe3345f449d1d5716214e7b5
+  - enabled: 1
+    path: Assets/_Scenes/Scoreboard.unity
+    guid: b1ba70a700179ce449785ca50d3a0029
   m_configObjects: {}
