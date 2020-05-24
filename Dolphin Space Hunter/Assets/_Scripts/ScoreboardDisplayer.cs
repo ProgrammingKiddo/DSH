@@ -120,7 +120,6 @@ public class ScoreboardDisplayer : MonoBehaviour
         }
         if (playerScore > minimumScoreToBeat)
         {
-            Debug.Log("Score " + playerScore + " is high enough (" + scoreboard.scores[0] + ")");
             activateInputFields();
         }
         else
@@ -142,6 +141,7 @@ public class ScoreboardDisplayer : MonoBehaviour
         playersText.gameObject.SetActive(true);
         scoresText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
+        creditsButton.gameObject.SetActive(true);
     }
 
     private void loadScoreboardToUI()

@@ -176,6 +176,7 @@ public class ShooterGameDirector : MonoBehaviour
             case "Hard":
                 JsonManager.loadFromJson(hardDifficultyFile, shootingLevel);
                 break;
+
         }
     }
 }
