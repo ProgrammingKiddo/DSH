@@ -30,7 +30,7 @@ public class ShooterGameDirector : MonoBehaviour
 
     private int bonusModifier = 1;
     private int score = 0;
-    private int remainingShield = 10;
+    private int remainingShield = 50;
     private int maxAmmunition;
     private int wave;
     private ShootingLevels_Container shootingLevel = new ShootingLevels_Container();
@@ -158,6 +158,7 @@ public class ShooterGameDirector : MonoBehaviour
     {
         // Dejamos de mostrar nada por pantalla
         Camera.main.enabled = false;
+        shieldBar.gameObject.SetActive(false);
         // Paramos la música de la escena
         GetComponent<AudioSource>().Stop();
         // Reproducimos el sonido de explosión de la nave
