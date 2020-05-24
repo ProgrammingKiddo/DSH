@@ -59,7 +59,6 @@ public class AsteroidScreen : MonoBehaviour
                 SceneManager.LoadScene("<yourscenename>");
 
             }*/
-            Debug.Log("co2");
         //}
 
     }
