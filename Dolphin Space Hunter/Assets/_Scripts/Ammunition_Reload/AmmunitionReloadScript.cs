@@ -13,8 +13,7 @@ public class AmmunitionReloadScript : MonoBehaviour
     public ProgressBar shieldBar; //Funciona aunque sala este error, no se porque sale
 
     private int absMax = 49;
-    private int currentAmmunition, maxAmmunition, currentScore;
-    private float currentShield;
+    private int currentAmmunition, maxAmmunition, currentScore, currentShield;
     //Color Ranges:
     //-49[RED]-45[YELLOW]-6[GREEN]5[YELLOW]41[RED]49
     private int[] colorBarRanges = {-45, -6, 5, 41};
@@ -81,5 +80,10 @@ public class AmmunitionReloadScript : MonoBehaviour
         }else{
             ammunitionCounter.color = Color.green;
         }
+    }
+
+    public void saveInformation(){
+        PlayerPrefs.SetInt("Ammo", currentAmmunition);
+        PlayerPrefs.SetInt("Shield", currentShield);
     }
 }

@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class ShieldLoadScene : MonoBehaviour, ITrackableEventHandler
 {
-
+    public GameObject saveInformationScript;
     private TrackableBehaviour mTrackableBehaviour;
 
 
@@ -38,6 +38,7 @@ public class ShieldLoadScene : MonoBehaviour, ITrackableEventHandler
             switch (mTrackableBehaviour.TrackableName)
             {
                 case "ShieldRechargeScene":
+                    
                     SceneManager.LoadScene("ShieldRechargeScene");
                     break;
 

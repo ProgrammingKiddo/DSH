@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class AmmoChangeScene : MonoBehaviour, ITrackableEventHandler
 {
-
+    public GameObject saveInformationObject;
     private TrackableBehaviour mTrackableBehaviour;
 
 
@@ -35,13 +35,15 @@ public class AmmoChangeScene : MonoBehaviour, ITrackableEventHandler
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED)
         {
-            switch (mTrackableBehaviour.TrackableName)
+            saveInformationObject.GetComponent<AmmunitionReloadScript>().saveInformation();
+            SceneManager.LoadScene(mTrackableBehaviour.TrackableName);
+            /*switch (mTrackableBehaviour.TrackableName)
             {
                 case "AmmunitionReloadScene":
                     SceneManager.LoadScene("AmmunitionReloadScene");
                     break;
 
-            }
+            }*/
         }
     }
 
