@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using TMPro; No reconoce el paquete
+using TMPro; //No reconoce el paquete
 
 public class AmmunitionReloadScript : MonoBehaviour
 {
     public int indicatorSpeed;
-    public Text ammunitionCounter, scorePanel;
-    //public TextMeshProUGUI ammunitionCounter, scorePanel; //No reconoce el paquete
+    //public Text ammunitionCounter, scorePanel;
+    public TextMeshProUGUI ammunitionCounter, scorePanel; //No reconoce el paquete
     public ProgressBar shieldBar; //Funciona aunque sala este error, no se porque sale
 
     private int absMax = 49;
