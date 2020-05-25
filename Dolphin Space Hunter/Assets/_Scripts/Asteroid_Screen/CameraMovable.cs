@@ -11,6 +11,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 
 public class CameraMovable : MonoBehaviour
@@ -22,18 +24,27 @@ public class CameraMovable : MonoBehaviour
     float factorFiltro = 0;
     public GUISteroid canvasVida;
     private bool sinEscudo, isRunning; //Global para comprobar si tenemois escudo
-    private int escudoActual;//Escudo actual
+    private int escudoActual,currentScore, currentAmmunition, maxAmmunition;//Escudo actual
+    public TextMeshProUGUI scorePanel, ammunitionCounter;
     public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
     AudioSource sonidoChoque;
     Vector3 valorCrudo = Vector3.zero;
     public GameObject explosion;
 
 
+
     void Start()
     {
+        escudoActual = 50;// = PlayerPrefs.GetInt("Shield", 50);
+        currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
+        int aux = PlayerPrefs.GetInt("sinEscudo", 0);
+        currentAmmunition =10;// = PlayerPrefs.GetInt("Ammo", 0);
+        maxAmmunition = 50;// PlayerPrefs.GetInt("MaxAmmo", 50);
+        if (aux == 1) { sinEscudo = true; } else { sinEscudo = false; }
+        scorePanel.text = "Score: " + currentScore.ToString();
         isRunning = false;
-        canvasVida.golpeado(100);
-        escudoActual = 100;//
+        canvasVida.golpeado(escudoActual);
+        ammunitionCounter.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
         factorFiltro = IntervaloAc / LowPassKernelWidthInSeconds;
         valorCrudo = Input.acceleration;
         sonidoChoque = GetComponent<AudioSource>();
@@ -55,15 +66,9 @@ public class CameraMovable : MonoBehaviour
     }
     private void actualizaCamara()
     {
-        float speed = 200.0f;
+        float speed = 350.0f;
         Vector3 prueba  = Vector3.zero;
 
-        // we assume that the device is held parallel to the ground
-        // and the Home button is in the right hand
-
-        // remap the device acceleration axis to game coordinates:
-        // 1) XY plane of the device is mapped onto XZ plane
-        // 2) rotated 90 degrees around Y axis
         prueba.x = -Input.acceleration.y;
         prueba.z = Input.acceleration.x;
 
@@ -75,13 +80,8 @@ public class CameraMovable : MonoBehaviour
         prueba *= speed;
         Vector3 newPosition = new Vector3(ArCamera.transform.position.x + prueba.z, ArCamera.transform.position.y + prueba.x, 0);
 
-
-        // Move object
         // ArCamera.gameObject.Translate(prueba * speed);
         ArCamera.transform.position= newPosition;
-
-
-
 
       /*  Vector3 acelerometroValor = FiltradoAccelValor();
         Vector3 newPosition = new Vector3(ArCamera.transform.position.x + acelerometroValor.x,ArCamera.transform.position.y+acelerometroValor.y, ArCamera.transform.position.z);
@@ -89,11 +89,11 @@ public class CameraMovable : MonoBehaviour
         Debug.Log(ArCamera.transform.position);*/
     }
 
-    void OnGUI()
+   /* void OnGUI()
     {
         GUILayout.Label("NO FILTRADO " + Input.acceleration + " Fil " + Vector3.Lerp(valorCrudo, Input.acceleration, factorFiltro)+"Camera "+ArCamera.transform.position);
 
-    }
+    }*/
 
     void ShakeCamera()
     {
@@ -137,19 +137,21 @@ public class CameraMovable : MonoBehaviour
         {
             sonidoChoque.Play();
             escudoActual -= 10; //facil
+            PlayerPrefs.SetInt("Shield", escudoActual);
             canvasVida.golpeado(escudoActual);
             ShakeCamera();
             if (escudoActual <= 0)
             {
                 if (sinEscudo)
                 {
-                    Instantiate(explosion, new Vector3(0f, -2f, 5f), Quaternion.identity);
-                    //Insertar espera?
+                    Instantiate(explosion, new Vector3(transform.position.x, transform.position.y-2f, transform.position.z+5f), Quaternion.identity);
+                    
                     SceneManager.LoadScene("GameOverScene");//cargar GAME OVER
                 }
                 else
                 {
                     sinEscudo = true;
+                    PlayerPrefs.SetInt("sinEscudo", 1);
                 }
             }
         }

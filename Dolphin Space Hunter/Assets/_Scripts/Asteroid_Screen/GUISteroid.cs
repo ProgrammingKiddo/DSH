@@ -21,7 +21,7 @@ public class GUISteroid : MonoBehaviour
     void Start()
     {
         hit = true;
-        actual = 100;
+       // actual = 50; //valor INICIAL concordar con playerprefs
     }
 
     // Update is called once per frame

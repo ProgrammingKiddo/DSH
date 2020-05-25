@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="AmmunitionReloadScene" size="924.000000 516.000000" />
+    <ImageTarget name="ShieldRechargeScene" size="934.000000 507.000000" />
+    <ImageTarget name="AsteroidScene" size="300.000000 206.590912" />
+    <ImageTarget name="ShootingScene" size="300.000000 206.590912" />
+    <ImageTarget name="Target4" size="300.000000 257.343750" />
+    <ImageTarget name="Target3" size="300.000000 325.938019" />
+    <ImageTarget name="Target2" size="300.000000 200.000000" />
+    <ImageTarget name="Target1" size="300.000000 206.590912" />
+  </Tracking>
+</QCARConfig>
