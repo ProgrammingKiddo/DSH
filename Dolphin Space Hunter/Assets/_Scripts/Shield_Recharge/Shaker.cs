@@ -5,14 +5,14 @@ using UnityEngine;
 public class Shaker : MonoBehaviour
 {
     public float sensibility;
-    public float rechargeRate;
+    public int rechargeRate;
     private int cont;
     // Start is called before the first frame update
     void Start()
     {
         cont = 0;
         sensibility = 5;
-        rechargeRate = 5;
+        rechargeRate = PlayerPrefs.GetInt("ShielRechargeRate", 5);
     }
 
     // Update is called once per frame

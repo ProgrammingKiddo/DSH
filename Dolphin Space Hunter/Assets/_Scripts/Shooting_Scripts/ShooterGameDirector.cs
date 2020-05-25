@@ -55,7 +55,6 @@ public class ShooterGameDirector : MonoBehaviour
         score = PlayerPrefs.GetInt("PlayerScore", 0);
         ammunition = PlayerPrefs.GetInt("Ammo", 50);
         loadDifficulty();
-        PlayerPrefs.SetInt("RechargeAmmount", shootingLevel.rechargeAmmount);
         PlayerPrefs.SetInt("MaxAmmo", shootingLevel.maxAmmunition);
         Debug.Log("GameDirector Awake");
         shieldBar.BarValue = remainingShield;

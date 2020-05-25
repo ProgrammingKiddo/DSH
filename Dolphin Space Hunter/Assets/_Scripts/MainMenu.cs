@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public TextAsset defaultScoreboard;
     public TextMeshProUGUI difficultyText; 
     public Image difficultyBackground;
+    private string dificultyString;
 
     public void Start()
     {
@@ -24,25 +25,29 @@ public class MainMenu : MonoBehaviour
         }
             Debug.Log("b: " + PlayerPrefs.GetString("Scoreboard"));
             Debug.Log("c: " + defaultScoreboard.text);
+        dificultyString = "Easy";
     }
 
     public void PlayGame()
     {
-
+        PlayerPrefs.SetString("Difficulty", dificultyString);
         SceneManager.LoadScene("IntroVideoScene");
     }
 
     public void changeDifficulty(){
         switch(difficultyText.text){   
-            case "facil": {
+            case "facil":   {
+                dificultyString = "Normal";
                 difficultyText.text = "normal";
                 difficultyBackground.color = new Color32(255, 255, 0, 100);
             } break;
-            case "normal": {
+            case "normal":  {
+                dificultyString = "Hard";
                 difficultyText.text = "dificil";
                 difficultyBackground.color = new Color32(255, 0, 0, 100);
             }break;
             case "dificil": {
+                dificultyString = "Easy";
                 difficultyText.text = "facil";
                 difficultyBackground.color = new Color32(0, 255, 0, 100);
             }break;

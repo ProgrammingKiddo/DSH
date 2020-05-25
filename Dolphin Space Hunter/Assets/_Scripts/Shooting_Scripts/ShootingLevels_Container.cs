@@ -12,10 +12,9 @@ public class ShootingLevels_Container : MonoBehaviour
 
     #region Variables
     public int maxAmmunition;
-    public int rechargeAmmount;
-    public string difficultyLevel;
     public int fleetsPerWave;
-    public int wavesPerBoss;
+    public int wavesPerBoss; 
+    public int shieldRechargeRate; //Factor que indica cuantos frames agitar el telefono para que aumente el escudo en 1 unidad
     
     public struct fleet
     {
