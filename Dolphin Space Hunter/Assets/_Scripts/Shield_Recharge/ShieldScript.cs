@@ -43,4 +43,8 @@ public class ShieldScript : MonoBehaviour
             ammunitionCounter.color = Color.green;
         }
     }
+
+    public void saveInformation(){
+        PlayerPrefs.SetInt("Shield", (int)Shield);
+    }
 }

@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 
 public class ShieldLoadScene : MonoBehaviour, ITrackableEventHandler
 {
-    public GameObject saveInformationScript;
     private TrackableBehaviour mTrackableBehaviour;
 
 
@@ -35,14 +34,16 @@ public class ShieldLoadScene : MonoBehaviour, ITrackableEventHandler
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED)
         {
-            switch (mTrackableBehaviour.TrackableName)
+            PlayerPrefs.SetInt("Shield", (int)ShieldScript.Shield);
+            SceneManager.LoadScene(mTrackableBehaviour.TrackableName);
+            /*switch (mTrackableBehaviour.TrackableName)
             {
                 case "ShieldRechargeScene":
                     
                     SceneManager.LoadScene("ShieldRechargeScene");
                     break;
 
-            }
+            }*/
         }
     }
 
