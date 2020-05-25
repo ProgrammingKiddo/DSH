@@ -1406,8 +1406,9 @@ MonoBehaviour:
   ammunition: 50
   shieldBar: {fileID: 1339496418}
   easyDifficultyFile: {fileID: 4900000, guid: ce96bfe154f16e24e86d551e9093f577, type: 3}
-  mediumDifficultyFile: {fileID: 0}
-  hardDifficultyFile: {fileID: 0}
+  mediumDifficultyFile: {fileID: 4900000, guid: 623eb758fdbc6e14d94acfcc91472871,
+    type: 3}
+  hardDifficultyFile: {fileID: 4900000, guid: a2f9279b3769afd45a5af6d84443b6e4, type: 3}
 --- !u!82 &706681551
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2346,6 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f313d3bca7184e459a8b328ab83559b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveInformationObject: {fileID: 0}
 --- !u!33 &1261848729
 MeshFilter:
   m_ObjectHideFlags: 0

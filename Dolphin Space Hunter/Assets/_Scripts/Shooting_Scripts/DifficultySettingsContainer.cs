@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingLevels_Container : MonoBehaviour
+public class DifficultySettingsContainer : MonoBehaviour
 {
 
     #region Variables

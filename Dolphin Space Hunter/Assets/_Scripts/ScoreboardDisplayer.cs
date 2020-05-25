@@ -56,7 +56,7 @@ public class ScoreboardDisplayer : MonoBehaviour
             case "Easy":
                 lastScore = 0;
                 break;
-            case "Medium":
+            case "Normal":
                 lastScore = 3;
                 break;
             case "Hard":
@@ -111,7 +111,7 @@ public class ScoreboardDisplayer : MonoBehaviour
             case "Easy":
                 minimumScoreToBeat = scoreboard.scores[0];
                 break;
-            case "Medium":
+            case "Normal":
                 minimumScoreToBeat = scoreboard.scores[3];
                 break;
             case "Hard":
@@ -152,7 +152,7 @@ public class ScoreboardDisplayer : MonoBehaviour
             case "Easy":
                 lastScore = 0;
                 break;
-            case "Medium":
+            case "Normal":
                 lastScore = 3;
                 break;
             case "Hard":

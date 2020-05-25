@@ -14,7 +14,7 @@ public class ChangeFromShooting : MonoBehaviour
 
     void Start()
     {
-        ShooterGameDirector.Instance().changeScene(GetComponent<ImageTargetBehaviour>().ImageTarget.Name);
+        //ShooterGameDirector.Instance().changeScene(GetComponent<ImageTargetBehaviour>().ImageTarget.Name);
     }
 
     #endregion

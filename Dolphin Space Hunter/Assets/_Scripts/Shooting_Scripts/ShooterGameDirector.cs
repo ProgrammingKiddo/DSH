@@ -33,7 +33,7 @@ public class ShooterGameDirector : MonoBehaviour
     private int remainingShield = 50;
     private int maxAmmunition;
     private int wave;
-    private ShootingLevels_Container shootingLevel = new ShootingLevels_Container();
+    private DifficultySettingsContainer shootingLevel = new DifficultySettingsContainer();
 
     #endregion
 
@@ -161,20 +161,24 @@ public class ShooterGameDirector : MonoBehaviour
         // Paramos la música de la escena
         GetComponent<AudioSource>().Stop();
         // Reproducimos el sonido de explosión de la nave
-        GetComponent<AudioSource>().PlayOneShot(explosionSound);
+        GetComponent<AudioSource>().PlayOneShot(explosionSound, 1f);
         yield return new WaitForSecondsRealtime(4f);
         PlayerPrefs.SetInt("Score", score);
         SceneManager.LoadScene("GameOverScene");
     }
 
-    public void changeScene(string name)
+    public void saveInformation(string name)
     {
+        // Penalizador por cambiar a menudo entre escenas, para evitar
+        // que el jugador esté continuamente recargando munición y/o escudo
         addBonusModifier(-5);
+        // Guardamos la información relevante
         PlayerPrefs.SetInt("PlayerScore", score);
         PlayerPrefs.SetInt("Ammo", ammunition);
+        PlayerPrefs.SetInt("Shield", remainingShield);
         PlayerPrefs.SetInt("Wave", wave);
 
-        SceneManager.LoadScene(name);
+        //SceneManager.LoadScene(name);
     }
 
     private void loadDifficulty()
@@ -184,7 +188,7 @@ public class ShooterGameDirector : MonoBehaviour
             case "Easy":
                 JsonUtility.FromJsonOverwrite(easyDifficultyFile.text, shootingLevel);
                 break;
-            case "Medium":
+            case "Normal":
                 JsonUtility.FromJsonOverwrite(mediumDifficultyFile.text, shootingLevel);
                 break;
             case "Hard":
