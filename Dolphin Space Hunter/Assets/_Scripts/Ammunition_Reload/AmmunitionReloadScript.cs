@@ -23,7 +23,7 @@ public class AmmunitionReloadScript : MonoBehaviour
     void Start()
     {
         currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
-        maxAmmunition = PlayerPrefs.GetInt("MaAmmo", 100);
+        maxAmmunition = PlayerPrefs.GetInt("MaxAmmo", 100);
         currentShield = PlayerPrefs.GetInt("Shield", 100);
         currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
         indicatorSpeed = PlayerPrefs.GetInt("reloadBarSpeed", 500);
