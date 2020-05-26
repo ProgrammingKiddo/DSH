@@ -17,37 +17,38 @@ using TMPro;
 
 public class CameraMovable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Camera ArCamera;
-    float IntervaloAc = 1.0f / 30; //valor actualizacion;
-    float LowPassKernelWidthInSeconds = 1.0f;
-    float factorFiltro = 0;
-    public GUISteroid canvasVida;
-    private bool sinEscudo, isRunning; //Global para comprobar si tenemois escudo
-    private int escudoActual,currentScore, currentAmmunition, maxAmmunition,dañoAsteroide;//Escudo actual
+    // Start is called before th
     public TextMeshProUGUI scorePanel, ammunitionCounter;
-    public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
-    AudioSource sonidoChoque;
-    Vector3 valorCrudo = Vector3.zero;
-    public GameObject explosion;
 
+    public Camera ArCamera;
+    public GUISteroid asteroidUI;
+    public GameObject explosion;
+    public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
+
+
+    private bool noShield, isShaking; //Global para comprobar si tenemois escudo
+    private int remainingShield,currentScore, currentAmmunition, maxAmmunition,asteroidDamage;//Escudo actual
+    AudioSource collisionSound;
 
 
     void Start()
     {
-        dañoAsteroide = PlayerPrefs.GetInt("DañoAsteroide", 10);
-        escudoActual = PlayerPrefs.GetInt("Shield", 50);
-        currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
-        currentAmmunition  = PlayerPrefs.GetInt("Ammo", 0);
-        maxAmmunition =  PlayerPrefs.GetInt("MaxAmmo", 50);
-        if (escudoActual <= 0) { sinEscudo = true; } else { sinEscudo = false; }
-        scorePanel.text = "Score: " + currentScore.ToString();
-        isRunning = false;
-        canvasVida.golpeado(escudoActual);
+        loadParameters();
+        
+        if (remainingShield <= 0)
+        {
+            noShield = true;
+        }
+        else
+        {
+            noShield = false;
+        }
+
+        
+        isShaking = false;
+        asteroidUI.asteroidHit(remainingShield);
         ammunitionCounter.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
-        factorFiltro = IntervaloAc / LowPassKernelWidthInSeconds;
-        valorCrudo = Input.acceleration;
-        sonidoChoque = GetComponent<AudioSource>();
+        collisionSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -68,12 +69,6 @@ public class CameraMovable : MonoBehaviour
             prueba.x = -Input.acceleration.z;
         }
 
-       /* if (Input.acceleration.y =< 0.1f)
-        {
-            prueba.x = -Input.acceleration.y + 1;
-            // if (prueba.x >= 0) { prueba.x += 1; }
-        }*/
-
         if (Mathf.Abs(Input.acceleration.x) >= 0.1f)
         { prueba.z = Input.acceleration.x; }
 
@@ -86,19 +81,10 @@ public class CameraMovable : MonoBehaviour
         
         Vector3 newPosition = new Vector3(ArCamera.transform.position.x + prueba.z, ArCamera.transform.position.y + prueba.x, 0);
 
-        // ArCamera.gameObject.Translate(prueba * speed);
         ArCamera.transform.position= newPosition;
 
-      /*  Vector3 acelerometroValor = FiltradoAccelValor();
-        Vector3 newPosition = new Vector3(ArCamera.transform.position.x + acelerometroValor.x,ArCamera.transform.position.y+acelerometroValor.y, ArCamera.transform.position.z);
-        ArCamera.transform.position = newPosition;*/
     }
 
-    void OnGUI()
-    {
-        GUILayout.Label("NO FILTRADO " + Input.acceleration + " Fil " + Vector3.Lerp(valorCrudo, Input.acceleration, factorFiltro)+"Camera "+ArCamera.transform.position);
-
-    }
 
     void ShakeCamera()
     {
@@ -106,11 +92,11 @@ public class CameraMovable : MonoBehaviour
         startAmount = 40;//Set default (start) values
         startDuration = 40;//Set default (start) values
         shakeDuration = 20;
-        if (!isRunning) { StartCoroutine(Shake());}//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+        if (!isShaking) { StartCoroutine(Shake());}//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
     }
 
 	IEnumerator Shake() {
-		isRunning = true;
+		isShaking = true;
         float shakePercentage;
         bool smooth = true;
 		while (shakeDuration > 0.01f) {
@@ -131,26 +117,27 @@ public class CameraMovable : MonoBehaviour
 			yield return null;
 		}
         transform.localRotation = Quaternion.identity;//Set the local rotation to 0 when done, just to get rid of any fudging stuff.
-		isRunning = false;
+		isShaking = false;
 	}
  
-    public void guardaInformacion()
+    public void saveInformation()
     {
-        PlayerPrefs.SetInt("Shield", escudoActual);
+        PlayerPrefs.SetInt("Shield", remainingShield);
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Asteroid")
         {
-            sonidoChoque.Play();
-            escudoActual -= dañoAsteroide;
-            canvasVida.golpeado(escudoActual);
+            collisionSound.Play();
             ShakeCamera();
-            if (escudoActual <= 0)
+
+            remainingShield -= asteroidDamage;
+            asteroidUI.asteroidHit(remainingShield);
+            if (remainingShield <= 0)
             {
-                if (sinEscudo)
+                if (noShield)
                 {
                     Instantiate(explosion, new Vector3(transform.position.x, transform.position.y-2f, transform.position.z+5f), Quaternion.identity);
                     
@@ -158,11 +145,22 @@ public class CameraMovable : MonoBehaviour
                 }
                 else
                 {
-                    sinEscudo = true;
+                    noShield = true;
                 }
             }
         }
 
+    }
+
+    private void loadParameters()
+    {
+        asteroidDamage = PlayerPrefs.GetInt("AsteroidDamage", 10);
+        remainingShield = PlayerPrefs.GetInt("Shield", 50);
+        currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
+        currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
+        maxAmmunition = PlayerPrefs.GetInt("MaxAmmo", 50);
+
+        scorePanel.text = "Score: " + currentScore.ToString();
     }
 
 }

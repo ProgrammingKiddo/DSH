@@ -14,8 +14,8 @@ using UnityEngine;
 public class GUISteroid : MonoBehaviour
 {
     // Start is called before the first frame update
-    public ProgressBar vida;
-    private int actual;
+    public ProgressBar shieldBar;
+    private int actualShield;
     private bool hit;
 
     void Start()
@@ -34,15 +34,15 @@ public class GUISteroid : MonoBehaviour
         
     }
 
-    public void golpeado(int valorNuevo)
+    public void asteroidHit(int remmainingShield)
     {
-        actual = valorNuevo;
+        actualShield = remmainingShield;
         hit = true;
     }
 
     IEnumerator setVida()
     {
-        vida.BarValue = actual;
+        shieldBar.BarValue = actualShield;
         yield return new WaitForSeconds(.1f);
     }
 }
