@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 654859708479080293}
   - component: {fileID: -6603760426622480564}
   m_Layer: 0
-  m_Name: Enemy_Projectile_EASY_1
+  m_Name: Enemy_Projectile_HARD_3
   m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 1500
-  damage: 5
+  damage: 20

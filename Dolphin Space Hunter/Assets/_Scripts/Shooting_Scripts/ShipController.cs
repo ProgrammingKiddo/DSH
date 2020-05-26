@@ -12,10 +12,13 @@ public class ShipController : MonoBehaviour
 
     #region Variables
     // Atributos públicos
+        public AudioClip explosionSound;
+    public float explosionStrength;
         public float radius;
         public float speed;
         public FleetController.ShipMovementPattern shipPattern;
         public int initialHealth = 10;
+
     
         public Vector3 movementVector = new Vector3(1f, 1f, 0f);
     Vector3 startingPosition;
@@ -41,11 +44,6 @@ public class ShipController : MonoBehaviour
         setPatternAttributes();
 
         remainingHealth = initialHealth;
-
-    }
-
-    void Update()
-    {
 
     }
 
@@ -84,6 +82,7 @@ public class ShipController : MonoBehaviour
                 // Al game director le enviamos solo la información relevante: la posición de la nave
                 // (a la que podemos acceder mediante el transform asociado al script) y las características
                 // de la misma (que están definidas en la clase DolphinScript
+                ShooterGameDirector.Instance().playSound(explosionSound, explosionStrength);
                 ShooterGameDirector.Instance().shipDestroyed(this);
                 // A la flota le enviamos la referencia de la nave (el GO) para que lo destruya y lleve
                 // la cuenta de cuántas naves de la flota quedan

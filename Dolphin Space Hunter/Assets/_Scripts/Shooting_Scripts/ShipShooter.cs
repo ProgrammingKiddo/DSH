@@ -12,6 +12,7 @@ public class ShipShooter : MonoBehaviour
 
     #region Variables
     public GameObject projectile;
+    public GameObject shootingPoint;
     public int aggressiveness;
     public float minSpread, maxSpread;
     #endregion
@@ -45,11 +46,10 @@ public class ShipShooter : MonoBehaviour
 
     private void shoot()
     {
-        Vector3 shootingPoint = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 200);
-        Vector3 attackVector = (calculateSpread() - shootingPoint).normalized;
+        Vector3 attackVector = (calculateSpread() - shootingPoint.transform.position).normalized;
 
         GameObject projectileShot = Instantiate(projectile,
-                                        shootingPoint,
+                                        shootingPoint.transform.position,
                                         Quaternion.LookRotation(attackVector));
         projectileShot.GetComponent<Rigidbody>().velocity = projectileShot.transform.forward * projectile.GetComponent<ProjectileScript>().projectileSpeed;
     }

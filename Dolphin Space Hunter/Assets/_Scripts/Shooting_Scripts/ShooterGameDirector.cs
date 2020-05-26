@@ -161,7 +161,7 @@ public class ShooterGameDirector : MonoBehaviour
         // Paramos la música de la escena
         GetComponent<AudioSource>().Stop();
         // Reproducimos el sonido de explosión de la nave
-        GetComponent<AudioSource>().PlayOneShot(explosionSound, 1f);
+        playSound(explosionSound, 1f);
         yield return new WaitForSecondsRealtime(4f);
         PlayerPrefs.SetInt("Score", score);
         SceneManager.LoadScene("GameOverScene");
@@ -194,5 +194,10 @@ public class ShooterGameDirector : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void playSound(AudioClip sound, float intensity)
+    {
+        GetComponent<AudioSource>().PlayOneShot(sound, intensity);
     }
 }

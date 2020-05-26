@@ -1,4 +1,20 @@
 {
-    "maxAmmunition" : 100,
-    "shieldRechargeRate": 5
+    "maxAmmunition": 100,
+    "fleetsPerWave": 1,
+    "wavesPerBoss":  5,
+    "shieldRechargeRate": 5,
+    "damagePerAsteroid": -5,
+    "asteroidSpawnRate": 2f,
+
+    "shipsPerWave": [
+        2,
+        3,
+        4,
+        5,
+        2
+    ],
+
+    ""
+
+
 }

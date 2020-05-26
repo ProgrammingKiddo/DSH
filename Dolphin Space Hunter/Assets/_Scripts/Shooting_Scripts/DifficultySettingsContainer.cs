@@ -25,7 +25,7 @@ public class DifficultySettingsContainer : MonoBehaviour
         public FleetController.FleetMovementPattern fleetPattern;
         public FleetController.ShipMovementPattern shipPattern;
     };
-    public List<fleet> fleetTypes = new List<fleet>();
+    
 
     public fleet bossFleet;
     #endregion
