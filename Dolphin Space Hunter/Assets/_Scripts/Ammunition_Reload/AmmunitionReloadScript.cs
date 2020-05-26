@@ -36,7 +36,6 @@ public class AmmunitionReloadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentAmmunition + " " + maxAmmunition + " " + currentShield + " " + currentScore + " " + indicatorSpeed);
         if(Input.touchCount==1 && Input.GetTouch(0).phase == TouchPhase.Began && currentAmmunition<maxAmmunition){
             if(transform.localPosition.x<=colorBarRanges[0] || transform.localPosition.x>=colorBarRanges[3]){
                 currentAmmunition += (maxAmmunition/10);    //Red reload => +10% of ammo

@@ -24,7 +24,7 @@ public class CameraMovable : MonoBehaviour
     float factorFiltro = 0;
     public GUISteroid canvasVida;
     private bool sinEscudo, isRunning; //Global para comprobar si tenemois escudo
-    private int escudoActual,currentScore, currentAmmunition, maxAmmunition;//Escudo actual
+    private int escudoActual,currentScore, currentAmmunition, maxAmmunition,dañoAsteroide;//Escudo actual
     public TextMeshProUGUI scorePanel, ammunitionCounter;
     public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
     AudioSource sonidoChoque;
@@ -35,12 +35,12 @@ public class CameraMovable : MonoBehaviour
 
     void Start()
     {
-        escudoActual = 50;// = PlayerPrefs.GetInt("Shield", 50);
+        dañoAsteroide = PlayerPrefs.GetInt("DañoAsteroide", 10);
+        escudoActual = PlayerPrefs.GetInt("Shield", 50);
         currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
-        int aux = PlayerPrefs.GetInt("sinEscudo", 0);
-        currentAmmunition =10;// = PlayerPrefs.GetInt("Ammo", 0);
-        maxAmmunition = 50;// PlayerPrefs.GetInt("MaxAmmo", 50);
-        if (aux == 1) { sinEscudo = true; } else { sinEscudo = false; }
+        currentAmmunition  = PlayerPrefs.GetInt("Ammo", 0);
+        maxAmmunition =  PlayerPrefs.GetInt("MaxAmmo", 50);
+        if (escudoActual <= 0) { sinEscudo = true; } else { sinEscudo = false; }
         scorePanel.text = "Score: " + currentScore.ToString();
         isRunning = false;
         canvasVida.golpeado(escudoActual);
@@ -57,20 +57,25 @@ public class CameraMovable : MonoBehaviour
         
     }
 
-    private Vector3 FiltradoAccelValor()
-    {
-        Debug.Log("NO FILTRADO " + Input.acceleration);
-        Debug.Log("fILTREADO " + Vector3.Lerp(valorCrudo, Input.acceleration, factorFiltro));
-        return Vector3.Lerp(valorCrudo, Input.acceleration, factorFiltro);
-     
-    }
+
     private void actualizaCamara()
     {
         float speed = 350.0f;
         Vector3 prueba  = Vector3.zero;
 
-        prueba.x = -Input.acceleration.y;
-        prueba.z = Input.acceleration.x;
+        if (Mathf.Abs(Input.acceleration.z) >=0.1f)
+        {
+            prueba.x = -Input.acceleration.z;
+        }
+
+       /* if (Input.acceleration.y =< 0.1f)
+        {
+            prueba.x = -Input.acceleration.y + 1;
+            // if (prueba.x >= 0) { prueba.x += 1; }
+        }*/
+
+        if (Mathf.Abs(Input.acceleration.x) >= 0.1f)
+        { prueba.z = Input.acceleration.x; }
 
         // clamp acceleration vector to the unit sphere
         if (prueba.sqrMagnitude > 1)
@@ -78,6 +83,7 @@ public class CameraMovable : MonoBehaviour
 
         prueba *= Time.deltaTime;
         prueba *= speed;
+        
         Vector3 newPosition = new Vector3(ArCamera.transform.position.x + prueba.z, ArCamera.transform.position.y + prueba.x, 0);
 
         // ArCamera.gameObject.Translate(prueba * speed);
@@ -85,15 +91,14 @@ public class CameraMovable : MonoBehaviour
 
       /*  Vector3 acelerometroValor = FiltradoAccelValor();
         Vector3 newPosition = new Vector3(ArCamera.transform.position.x + acelerometroValor.x,ArCamera.transform.position.y+acelerometroValor.y, ArCamera.transform.position.z);
-        ArCamera.transform.position = newPosition;
-        Debug.Log(ArCamera.transform.position);*/
+        ArCamera.transform.position = newPosition;*/
     }
 
-   /* void OnGUI()
+    void OnGUI()
     {
         GUILayout.Label("NO FILTRADO " + Input.acceleration + " Fil " + Vector3.Lerp(valorCrudo, Input.acceleration, factorFiltro)+"Camera "+ArCamera.transform.position);
 
-    }*/
+    }
 
     void ShakeCamera()
     {
@@ -101,7 +106,7 @@ public class CameraMovable : MonoBehaviour
         startAmount = 40;//Set default (start) values
         startDuration = 40;//Set default (start) values
         shakeDuration = 20;
-        if (!isRunning) { StartCoroutine(Shake()); Debug.Log("eNTRO"); }//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
+        if (!isRunning) { StartCoroutine(Shake());}//Only call the coroutine if it isn't currently running. Otherwise, just set the variables.
     }
 
 	IEnumerator Shake() {
@@ -129,6 +134,10 @@ public class CameraMovable : MonoBehaviour
 		isRunning = false;
 	}
  
+    public void guardaInformacion()
+    {
+        PlayerPrefs.SetInt("Shield", escudoActual);
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -136,8 +145,7 @@ public class CameraMovable : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             sonidoChoque.Play();
-            escudoActual -= 10; //facil
-            PlayerPrefs.SetInt("Shield", escudoActual);
+            escudoActual -= dañoAsteroide;
             canvasVida.golpeado(escudoActual);
             ShakeCamera();
             if (escudoActual <= 0)
@@ -151,7 +159,6 @@ public class CameraMovable : MonoBehaviour
                 else
                 {
                     sinEscudo = true;
-                    PlayerPrefs.SetInt("sinEscudo", 1);
                 }
             }
         }

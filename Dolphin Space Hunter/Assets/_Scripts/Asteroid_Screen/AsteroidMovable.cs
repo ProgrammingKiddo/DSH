@@ -21,12 +21,14 @@ public class AsteroidMovable : MonoBehaviour
 
     private GameObject asteroid;
     private float initX, initY, initZ = 2000;
+    private float spawnRate;
 
     public TextAsset JsonFile;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawnRate = PlayerPrefs.GetFloat("spawnRate", 1f);
         StartCoroutine("createAsteroid");
     }
 
@@ -50,7 +52,7 @@ public class AsteroidMovable : MonoBehaviour
             asteroid = Instantiate(asteroid, new Vector3(initX, initY, initZ), Quaternion.identity);
             asteroid.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,vel);
             asteroid.transform.localScale = new Vector3(75f, 75f, 75f);//tam asteroides DIFICULTA cambiar
-            yield return new WaitForSecondsRealtime(1.0f);
+            yield return new WaitForSecondsRealtime(spawnRate);
         }
 
     }

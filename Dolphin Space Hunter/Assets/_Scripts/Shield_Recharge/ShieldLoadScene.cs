@@ -11,12 +11,16 @@ using UnityEngine.SceneManagement;
 
 public class ShieldLoadScene : MonoBehaviour, ITrackableEventHandler
 {
+    bool imagenReconocida;
+
     private TrackableBehaviour mTrackableBehaviour;
 
 
     void Start()
     {
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
+        imagenReconocida = false;
+
 
     }
 
@@ -31,19 +35,16 @@ public class ShieldLoadScene : MonoBehaviour, ITrackableEventHandler
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
     {
-        if (newStatus == TrackableBehaviour.Status.DETECTED ||
-            newStatus == TrackableBehaviour.Status.TRACKED)
+        if (!imagenReconocida)
         {
-            PlayerPrefs.SetInt("Shield", (int)ShieldScript.Shield);
-            SceneManager.LoadScene(mTrackableBehaviour.TrackableName);
-            /*switch (mTrackableBehaviour.TrackableName)
-            {
-                case "ShieldRechargeScene":
-                    
-                    SceneManager.LoadScene("ShieldRechargeScene");
-                    break;
 
-            }*/
+            if (newStatus == TrackableBehaviour.Status.DETECTED ||
+                newStatus == TrackableBehaviour.Status.TRACKED)
+            {
+                PlayerPrefs.SetInt("Shield", (int)ShieldScript.Shield);
+                imagenReconocida = true;
+                SceneManager.LoadScene(mTrackableBehaviour.TrackableName);
+            }
         }
     }
 

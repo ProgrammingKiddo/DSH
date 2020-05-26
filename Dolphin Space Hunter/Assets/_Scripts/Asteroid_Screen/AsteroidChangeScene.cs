@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,18 +7,17 @@ using Vuforia;
 using UnityEngine.SceneManagement;
 
 
-public class AmmoChangeScene : MonoBehaviour, ITrackableEventHandler
+public class AsteroidChangeScene : MonoBehaviour, ITrackableEventHandler
 {
-    bool imagenReconocida;
     public GameObject saveInformationObject;
     private TrackableBehaviour mTrackableBehaviour;
+    bool imagenReconocida;
 
 
     void Start()
     {
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         imagenReconocida = false;
-
 
     }
 
@@ -37,12 +34,10 @@ public class AmmoChangeScene : MonoBehaviour, ITrackableEventHandler
     {
         if (!imagenReconocida)
         {
-
-
             if (newStatus == TrackableBehaviour.Status.DETECTED ||
                 newStatus == TrackableBehaviour.Status.TRACKED)
             {
-                saveInformationObject.GetComponent<AmmunitionReloadScript>().saveInformation();
+                saveInformationObject.GetComponent<CameraMovable>().guardaInformacion();
                 imagenReconocida = true;
                 SceneManager.LoadScene(mTrackableBehaviour.TrackableName);
 

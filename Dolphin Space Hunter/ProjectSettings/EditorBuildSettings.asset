@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/_Scenes/IntroVideoScene.unity
     guid: e2ae8789cae0785498bfd82057bfd8b0
   - enabled: 0
-    path: Assets/_Scenes/PlayGameScene.unity
+    path: 
     guid: a1e77cf3e9e08b9448ba87a0130b04dc
   - enabled: 0
-    path: Assets/_Scenes/OptionsScene.unity
+    path: 
     guid: 476435cfdda504445b2ec0a8f9c279b8
   - enabled: 1
     path: Assets/_Scenes/ShootingScene.unity
@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Scoreboard.unity
     guid: b1ba70a700179ce449785ca50d3a0029
+  - enabled: 1
+    path: Assets/_Scenes/AmmunitionReloadScene.unity
+    guid: a9edf9dcaa755e64ca94993a70ddf365
+  - enabled: 1
+    path: Assets/_Scenes/ShieldRechargeScene.unity
+    guid: d9d7c098a169ca74aa2f6fd5041afc0c
   m_configObjects: {}
