@@ -17,7 +17,6 @@ using TMPro;
 
 public class CameraMovable : MonoBehaviour
 {
-    // Start is called before th
     public TextMeshProUGUI scorePanel, ammunitionCounter;
 
     public Camera ArCamera;
@@ -33,6 +32,7 @@ public class CameraMovable : MonoBehaviour
 
     void Start()
     {
+        asteroidUI = this.gameObject.GetComponent<GUISteroid>();
         loadParameters();
         
         if (remainingShield <= 0)

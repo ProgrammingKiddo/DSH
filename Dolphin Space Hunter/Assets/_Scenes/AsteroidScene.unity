@@ -651,8 +651,7 @@ MonoBehaviour:
   Atype2: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
   Atype3: {fileID: 130102, guid: 04d0bf4be9447154188d86f6e3b8dce9, type: 3}
   MyCamera: {fileID: 1893036865}
-  vel: -500
-  JsonFile: {fileID: 4900000, guid: 3534e61a15e5998479d352fef473fdcb, type: 3}
+  velocity: 0
 --- !u!4 &917283691
 Transform:
   m_ObjectHideFlags: 0
@@ -1939,16 +1938,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6941f4fc1e866d49960cd89723bb7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArCamera: {fileID: 1893036865}
-  canvasVida: {fileID: 1893036869}
   scorePanel: {fileID: 1242880428}
   ammunitionCounter: {fileID: 1683718110}
+  ArCamera: {fileID: 1893036865}
+  asteroidUI: {fileID: 0}
+  explosion: {fileID: 100008, guid: 875c9bcb71a8d7f46a64a8a7df5987e0, type: 3}
   startDuration: 1
   shakeDuration: 20
   startAmount: 20
   shakeAmount: 20
   smoothAmount: 2
-  explosion: {fileID: 100008, guid: 875c9bcb71a8d7f46a64a8a7df5987e0, type: 3}
 --- !u!114 &1893036869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1772ecf47f6be64abb5647131fc4339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: {fileID: 951037871}
+  shieldBar: {fileID: 951037871}
 --- !u!54 &1893036870
 Rigidbody:
   m_ObjectHideFlags: 0

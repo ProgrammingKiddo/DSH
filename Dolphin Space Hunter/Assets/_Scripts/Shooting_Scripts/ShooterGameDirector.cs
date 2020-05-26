@@ -167,7 +167,7 @@ public class ShooterGameDirector : MonoBehaviour
         SceneManager.LoadScene("GameOverScene");
     }
 
-    public void saveInformation(string name)
+    public void saveInformation()
     {
         // Penalizador por cambiar a menudo entre escenas, para evitar
         // que el jugador esté continuamente recargando munición y/o escudo
@@ -177,8 +177,6 @@ public class ShooterGameDirector : MonoBehaviour
         PlayerPrefs.SetInt("Ammo", ammunition);
         PlayerPrefs.SetInt("Shield", remainingShield);
         PlayerPrefs.SetInt("Wave", wave);
-
-        //SceneManager.LoadScene(name);
     }
 
     private void loadDifficulty()

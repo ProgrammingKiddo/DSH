@@ -8,8 +8,8 @@ using TMPro; //No reconoce el paquete
 public class AmmunitionReloadScript : MonoBehaviour
 {
     public int indicatorSpeed;
-    //public Text ammunitionCounter, scorePanel;
-    public TextMeshProUGUI ammunitionCounter, scorePanel; //No reconoce el paquete
+    
+    public TextMeshProUGUI ammunitionCounter, scorePanel;
     public ProgressBar shieldBar; //Funciona aunque sala este error, no se porque sale
 
     private int absMax = 49;
@@ -17,7 +17,9 @@ public class AmmunitionReloadScript : MonoBehaviour
     //Color Ranges:
     //-49[RED]-45[YELLOW]-6[GREEN]5[YELLOW]41[RED]49
     private int[] colorBarRanges = {-45, -6, 5, 41};
-    // Start is called before the first frame update
+
+
+
     void Start()
     {
         currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
@@ -53,15 +55,15 @@ public class AmmunitionReloadScript : MonoBehaviour
     }
 
     IEnumerator reloadAction(){
-        bool derecha = true;
+        bool right = true;
         while(true){
             if(transform.localPosition.x <= -absMax){
-                derecha = true;
+                right = true;
             }else if(transform.localPosition.x >= absMax){
-                derecha = false;
+                right = false;
             }
 
-            if(derecha){
+            if(right){
                 transform.Translate(Vector3.right * indicatorSpeed * Time.deltaTime);
             }else{
                 transform.Translate(Vector3.left * indicatorSpeed * Time.deltaTime);

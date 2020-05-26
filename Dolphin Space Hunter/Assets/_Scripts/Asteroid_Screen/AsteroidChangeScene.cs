@@ -37,7 +37,7 @@ public class AsteroidChangeScene : MonoBehaviour, ITrackableEventHandler
             if (newStatus == TrackableBehaviour.Status.DETECTED ||
                 newStatus == TrackableBehaviour.Status.TRACKED)
             {
-                saveInformationObject.GetComponent<CameraMovable>().guardaInformacion();
+                saveInformationObject.GetComponent<CameraMovable>().saveInformation();
                 imagenReconocida = true;
                 SceneManager.LoadScene(mTrackableBehaviour.TrackableName);
 
