@@ -9,6 +9,7 @@ TagManager:
   - PlayerProjectile
   - IntroVideo
   - EnemyProjectile
+  - Asteroid
   layers:
   - Default
   - TransparentFX
