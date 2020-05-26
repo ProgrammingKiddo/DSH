@@ -651,7 +651,7 @@ MonoBehaviour:
   Atype2: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
   Atype3: {fileID: 130102, guid: 04d0bf4be9447154188d86f6e3b8dce9, type: 3}
   MyCamera: {fileID: 1893036865}
-  velocity: 0
+  velocity: -450
 --- !u!4 &917283691
 Transform:
   m_ObjectHideFlags: 0
@@ -676,7 +676,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 28fcfb6baa369124d8fb8a41d0d74117, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 911f7d0468b294f44979e86dab810ef2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1924,7 +1924,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 300, y: 300, z: 10}
+  m_Size: {x: 350, y: 350, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1893036868
 MonoBehaviour:

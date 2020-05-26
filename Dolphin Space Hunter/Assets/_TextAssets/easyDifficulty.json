@@ -5,6 +5,8 @@
     "shieldRechargeRate": 5,
     "damagePerAsteroid": -5,
     "asteroidSpawnRate": 2f,
+	"velMinAsteroides" : -700f,
+	"velMaxAsteroides" : -900f,
 
     "shipsPerWave": [
         2,

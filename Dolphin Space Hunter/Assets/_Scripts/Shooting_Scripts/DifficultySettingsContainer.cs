@@ -17,6 +17,7 @@ public class DifficultySettingsContainer : MonoBehaviour
     public int shieldRechargeRate; //Factor que indica cuantos frames agitar el telefono para que aumente el escudo en 1 unidad
     public int damagePerAsteroid;
     public float asteroidSpawnRate;
+    public float velMinAsteroides, velMaxAsteroides;
     
     public struct fleet
     {
