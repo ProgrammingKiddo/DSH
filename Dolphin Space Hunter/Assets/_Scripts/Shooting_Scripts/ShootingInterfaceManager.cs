@@ -30,6 +30,8 @@ public class ShootingInterfaceManager : MonoBehaviour
         updateBonusModifier(1);
         maxAmmunition = PlayerPrefs.GetInt("MaxAmmo", 0);
         ammunitionText.text = PlayerPrefs.GetInt("Ammo", 0).ToString() +  "/ " + maxAmmunition.ToString();
+        updateScore(PlayerPrefs.GetInt("PlayerScore", 0));
+        updateBonusModifier(PlayerPrefs.GetInt("BonusModifier", 1));
         updateAmmunition(ShooterGameDirector.Instance().ammunition);
     }
 

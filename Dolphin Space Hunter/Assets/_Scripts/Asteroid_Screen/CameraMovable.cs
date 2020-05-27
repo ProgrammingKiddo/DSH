@@ -20,7 +20,6 @@ public class CameraMovable : MonoBehaviour
     public TextMeshProUGUI scorePanel, ammunitionCounter;
 
     public Camera ArCamera;
-    public GameObject explosion;
     public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
     public int remainingShield;
     public AudioClip explosionSound;
@@ -148,7 +147,6 @@ public class CameraMovable : MonoBehaviour
             {
                 if (noShield)
                 {
-                    Instantiate(explosion, new Vector3(transform.position.x, transform.position.y-2f, transform.position.z+5f), Quaternion.identity);
                     StartCoroutine(gameOver());
                 }
                 else
