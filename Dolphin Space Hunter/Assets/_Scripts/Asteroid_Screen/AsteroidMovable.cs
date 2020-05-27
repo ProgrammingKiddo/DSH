@@ -18,7 +18,8 @@ public class AsteroidMovable : MonoBehaviour
     public GameObject Atype1, Atype2, Atype3;
     public Camera MyCamera;
     public float velocity;
-    float minVel, maxVel;
+
+    private float minVel, maxVel;
     private GameObject asteroid;
     private float initX, initY, initZ = 2000;
     private float spawnRate;
@@ -27,8 +28,8 @@ public class AsteroidMovable : MonoBehaviour
     void Start()
     {
         spawnRate = PlayerPrefs.GetFloat("SpawnRate", .45f); 
-        minVel = PlayerPrefs.GetFloat("velMinAsteroides", -900f);
-        maxVel = PlayerPrefs.GetFloat("velMaxAsteroides", -1400f);
+        minVel = PlayerPrefs.GetFloat("minAsteroidSpeed", -900f);
+        maxVel = PlayerPrefs.GetFloat("maxAsteroidSpeed", -1400f);
         StartCoroutine("createAsteroid");
     }
 
@@ -41,7 +42,7 @@ public class AsteroidMovable : MonoBehaviour
             // Calculamos un punto aleatorio de la pantalla
             initX = Random.Range(-Screen.width/2,Screen.width / 2);
             initY = Random.Range(-Screen.height/2, Screen.height/2);
-            velocity = Random.Range(maxVel, minVel);  //Invertido por la velocidad debe ser negativa
+            velocity = Random.Range(minVel, maxVel);  //Invertido por la velocidad debe ser negativa
             // Y le sumamos el offset actual de la cámara
             initX += MyCamera.transform.position.x;
             initY += MyCamera.transform.position.y;

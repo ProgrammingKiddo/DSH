@@ -1,22 +1,9 @@
 {
-    "maxAmmunition": 100,
-    "fleetsPerWave": 1,
-    "wavesPerBoss":  5,
-    "shieldRechargeRate": 5,
-    "damagePerAsteroid": -5,
-    "asteroidSpawnRate": 2f,
-	"velMinAsteroides" : -700f,
-	"velMaxAsteroides" : -900f,
-
-    "shipsPerWave": [
-        2,
-        3,
-        4,
-        5,
-        2
-    ],
-
-    ""
-
-
+    "maxAmmunition": 200,
+    "wavesPerBoss": 4,
+    "shieldRechargeRate": 1,
+    "damagePerAsteroid": 5,
+    "asteroidSpawnRate": 2,
+    "minAsteroidSpeed": -700,
+    "maxAsteroidSpeed": -900
 }

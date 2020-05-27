@@ -14,19 +14,16 @@ public class ShipShooter : MonoBehaviour
     public GameObject projectile;
     public GameObject shootingPoint;
     public int aggressiveness;
-    public float minSpread, maxSpread;
+    public float spread;
     #endregion
 
 
     private int iterations = 0;
     #region UnityMethods
 
-    void Start()
-    {
-        
-    }
 
-    void Update()
+
+    void FixedUpdate()
     {
         // Cada nave tiene una probabilidad entre 'aggressiveness' de disparar en cada paso del Update
         // Con cada paso en el que NO dispara, se incrementa en 1 la posibilidad de que dispare
@@ -57,8 +54,8 @@ public class ShipShooter : MonoBehaviour
     private Vector3 calculateSpread()
     {
         Vector3 targetPosition = Camera.main.transform.position;
-        float xOffset = Random.Range(minSpread, maxSpread);
-        float yOffset = Random.Range(minSpread, maxSpread);
+        float xOffset = Random.Range(-spread, spread);
+        float yOffset = Random.Range(-spread, spread);
 
         targetPosition.x += xOffset;
         targetPosition.y += yOffset;

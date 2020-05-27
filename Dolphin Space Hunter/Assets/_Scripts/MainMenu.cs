@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
         loadScoreboardToUI();
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (lightAngleStep >= 6)
         {
@@ -58,12 +58,11 @@ public class MainMenu : MonoBehaviour
         }
 
         titleText.material.SetFloat("_LightAngle", lightAngleStep);
-        //Debug.Log(titleText.material.GetFloat(ShaderUtilities.ID_LightAngle));
-    }
+    }*/
 
     public void PlayGame()
     {
-        PlayerPrefs.SetString("Difficulty", difficultyString);
+        PlayerPrefs.SetString("DifficultyMode", difficultyString);
         SceneManager.LoadScene("IntroVideoScene");
     }
 

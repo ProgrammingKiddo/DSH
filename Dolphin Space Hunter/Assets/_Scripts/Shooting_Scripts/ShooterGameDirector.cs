@@ -23,16 +23,16 @@ public class ShooterGameDirector : MonoBehaviour
     public int ammunition;
     public ProgressBar shieldBar;
     public TextAsset easyDifficultyFile, mediumDifficultyFile, hardDifficultyFile;
+    public FleetSpawner fleetSpawner;
 
     private GameObject activeFleets;
-    private int numberOfCurrentFleets = 0;
     private int numberOfCurrentShips = 0;
+    private int activeWave;
 
     private int bonusModifier = 1;
     private int score = 0;
-    private int remainingShield = 50;
-    private int maxAmmunition;
-    private int wave;
+    private int remainingShield;
+    private int spawnedWaves;
     private DifficultySettingsContainer shootingLevel = new DifficultySettingsContainer();
 
     #endregion
@@ -55,23 +55,18 @@ public class ShooterGameDirector : MonoBehaviour
         score = PlayerPrefs.GetInt("PlayerScore", 0);
         ammunition = PlayerPrefs.GetInt("Ammo", 50);
         loadDifficulty();
-        PlayerPrefs.SetInt("MaxAmmo", shootingLevel.maxAmmunition);
-        Debug.Log("GameDirector Awake");
+
+        remainingShield = PlayerPrefs.GetInt("Shield", 0);
+        spawnedWaves = PlayerPrefs.GetInt("SpawnedWaves", 0);
+
         shieldBar.BarValue = remainingShield;
-    }
-
-    void Start()
-    {
-
-        Debug.Log("GameDirector Start");
-    }
-
-    void Update()
-    {
-        if (numberOfCurrentFleets < 3 || numberOfCurrentShips < 6)
+        activeWave = PlayerPrefs.GetInt("ActiveWave", 0);
+        /*Debug.Log("ActiveWave: " + activeWave);
+        if (activeWave == 1)
         {
-
-        }
+            spawnedWaves++;
+            fleetSpawner.spawnWave();
+        }*/
     }
 
     #endregion
@@ -104,15 +99,15 @@ public class ShooterGameDirector : MonoBehaviour
     {
         addScore(50 * fleet.initialNumberOfShips);
         addBonusModifier(5);
-        numberOfCurrentFleets--;
-        // Briefly activate a message notifying the player that a whole
-        // fleet's been wiped out
+
+        // Desactivamos la flag de oleada activa
+        activeWave = 0;
     
     }
 
     public void playerHit(ProjectileScript projectile)
     {
-        addBonusModifier(-2);
+        //addBonusModifier(-2);
         // Si el escudo YA estaba a 0, el jugador muere
         if (remainingShield == 0)
         {
@@ -163,20 +158,25 @@ public class ShooterGameDirector : MonoBehaviour
         // Reproducimos el sonido de explosión de la nave
         playSound(explosionSound, 1f);
         yield return new WaitForSecondsRealtime(4f);
-        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.SetInt("PlayerScore", score);
         SceneManager.LoadScene("GameOverScene");
     }
 
     public void saveInformation()
     {
-        // Penalizador por cambiar a menudo entre escenas, para evitar
+        // Penalizador por cambiar a menudo entre escenas mientras haya una oleada activa, para evitar
         // que el jugador esté continuamente recargando munición y/o escudo
-        addBonusModifier(-5);
+        if (activeWave == 1)
+        {
+            addBonusModifier(-5);
+        }
         // Guardamos la información relevante
         PlayerPrefs.SetInt("PlayerScore", score);
         PlayerPrefs.SetInt("Ammo", ammunition);
         PlayerPrefs.SetInt("Shield", remainingShield);
-        PlayerPrefs.SetInt("Wave", wave);
+        PlayerPrefs.SetInt("SpawnedWaves", spawnedWaves);
+        PlayerPrefs.SetInt("ActiveWave", activeWave);
+        PlayerPrefs.SetInt("SpawnedWaves", spawnedWaves);
     }
 
     private void loadDifficulty()

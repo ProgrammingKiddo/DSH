@@ -51,7 +51,6 @@ public class TurretAiming : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
             ShooterGameDirector.Instance().playerHit(collision.gameObject.GetComponent<ProjectileScript>());
-            Debug.Log("I'm hit!");
         }
     }
 

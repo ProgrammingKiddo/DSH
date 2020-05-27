@@ -18,8 +18,6 @@ public class Shaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("X:" + Input.acceleration.x + " Y:" + Input.acceleration.y + " Z:" + Input.acceleration.z + " Sum:" + 
-        //          (Mathf.Abs(Input.acceleration.x) + Mathf.Abs(Input.acceleration.y) + Mathf.Abs(Input.acceleration.z)));
         if(ShieldScript.Shield < 100){
             if((Mathf.Abs(Input.acceleration.x) + Mathf.Abs(Input.acceleration.y) + Mathf.Abs(Input.acceleration.z)) > sensibility){
                 cont++;

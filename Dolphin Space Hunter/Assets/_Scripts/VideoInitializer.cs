@@ -17,7 +17,7 @@ public class VideoInitializer : MonoBehaviour
     void Start() 
     {
         // Cargamos la escena de forma asíncrona, y desactivamos su carga automática
-        loadingScene = SceneManager.LoadSceneAsync("ShootingScene");
+        loadingScene = SceneManager.LoadSceneAsync("AsteroidScene");
         loadingScene.allowSceneActivation = false;
 
         video = this.GetComponent<VideoPlayer>();
@@ -35,7 +35,7 @@ public class VideoInitializer : MonoBehaviour
         {
             loadingText.gameObject.SetActive(false);
             skipText.gameObject.SetActive(true);
-            if (Input.touchCount==1 && Input.GetTouch(0).phase == TouchPhase.Began){
+            if (Input.touchCount==1 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0)){
                 loadingScene.allowSceneActivation = true;
             }
         }
@@ -45,7 +45,7 @@ public class VideoInitializer : MonoBehaviour
     {
         difficultySettings = new DifficultySettingsContainer();
 
-        switch (PlayerPrefs.GetString("Difficulty", "Easy")){
+        switch (PlayerPrefs.GetString("DifficultyMode", "Easy")){
             case "Easy":
                 JsonUtility.FromJsonOverwrite(easySettingsFile.text, difficultySettings);
                 break;
@@ -61,7 +61,11 @@ public class VideoInitializer : MonoBehaviour
         PlayerPrefs.SetInt("Ammo", difficultySettings.maxAmmunition);
         PlayerPrefs.SetInt("Shield", 100);
         PlayerPrefs.SetInt("ShielRechargeRate", difficultySettings.shieldRechargeRate);
-        PlayerPrefs.SetInt("PlayerScore", 0);     
+        PlayerPrefs.SetFloat("minAsteroidSpeed", difficultySettings.minAsteroidSpeed);
+        PlayerPrefs.SetFloat("maxAsteroidSpeed", difficultySettings.maxAsteroidSpeed);
+        PlayerPrefs.SetInt("PlayerScore", 0);
+        PlayerPrefs.SetInt("WavesPerBoss", difficultySettings.wavesPerBoss);
+        PlayerPrefs.SetInt("ActiveWave", 0);
     }
 
     private void allowSceneLoad(VideoPlayer source)

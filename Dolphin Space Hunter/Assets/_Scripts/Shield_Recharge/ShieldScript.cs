@@ -15,7 +15,7 @@ public class ShieldScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Shield = PlayerPrefs.GetInt("Shield", 0);
+        Shield = PlayerPrefs.GetInt("Shield", 50);
         currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
         maxAmmunition = PlayerPrefs.GetInt("MaxAmmo", 50);
         currentScore = PlayerPrefs.GetInt("PlayerScore", 0);

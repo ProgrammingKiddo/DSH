@@ -28,15 +28,17 @@ public class ProjectileScript : MonoBehaviour
         //GetComponent<Rigidbody>().velocity = this.transform.forward * projectileSpeed;
         bulletTransform = GetComponent<Transform>();
         originalScale = bulletTransform.localScale;
+        GetComponentInChildren<ParticleSystem>().Play();
     }
 
     void Update()
     {
-        if (this.gameObject.CompareTag("PlayerProjectile") == true)
+        /*if (this.gameObject.CompareTag("PlayerProjectile") == true)
         {
             distanceToCamera = Vector3.Distance(Camera.main.transform.position, bulletTransform.position);
             bulletTransform.localScale = originalScale * Mathf.Clamp((distanceToCamera / Camera.main.farClipPlane), 0.15f, 0.4f);
 
+        }*/
             // Si el proyectil sale del rango de visión del eje Z, lo eliminamos
             if (bulletTransform.position.z > Camera.main.farClipPlane
                 || bulletTransform.position.z < Camera.main.nearClipPlane)
@@ -48,12 +50,19 @@ public class ProjectileScript : MonoBehaviour
                 }
                 Destroy(this.gameObject);
             }
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        if (this.gameObject.CompareTag("EnemyProjectile") == true
+            && collision.gameObject.CompareTag("Enemy") == true)
+        {
+            // No hacer nada
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     #endregion

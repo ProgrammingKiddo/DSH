@@ -181,7 +181,6 @@ public class FleetController : MonoBehaviour
         if (numberOfShips <= 0)
         {
             ShooterGameDirector.Instance().fleetDestroyed(this);
-            Debug.Log("Fleet destroyed!");
         }
     }
 }

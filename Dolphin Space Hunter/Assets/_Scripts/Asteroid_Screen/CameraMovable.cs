@@ -20,13 +20,13 @@ public class CameraMovable : MonoBehaviour
     public TextMeshProUGUI scorePanel, ammunitionCounter;
 
     public Camera ArCamera;
-    public GUISteroid asteroidUI;
     public GameObject explosion;
     public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
+    public int remainingShield;
 
-
+    private GUISteroid asteroidUI;
     private bool noShield, isShaking; //Global para comprobar si tenemois escudo
-    private int remainingShield,currentScore, currentAmmunition, maxAmmunition,asteroidDamage;//Escudo actual
+    private int currentScore, currentAmmunition, maxAmmunition,asteroidDamage;//Escudo actual
     AudioSource collisionSound;
 
 
@@ -47,7 +47,7 @@ public class CameraMovable : MonoBehaviour
         
         isShaking = false;
         asteroidUI.asteroidHit(remainingShield);
-        ammunitionCounter.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
+        ammunitionCounter.text = currentAmmunition.ToString() + " / " + maxAmmunition.ToString();
         collisionSound = GetComponent<AudioSource>();
     }
 
@@ -140,7 +140,7 @@ public class CameraMovable : MonoBehaviour
                 if (noShield)
                 {
                     Instantiate(explosion, new Vector3(transform.position.x, transform.position.y-2f, transform.position.z+5f), Quaternion.identity);
-                    
+                    PlayerPrefs.SetInt("PlayerScore", currentScore);
                     SceneManager.LoadScene("GameOverScene");//cargar GAME OVER
                 }
                 else
@@ -159,6 +159,7 @@ public class CameraMovable : MonoBehaviour
         currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
         currentAmmunition = PlayerPrefs.GetInt("Ammo", 0);
         maxAmmunition = PlayerPrefs.GetInt("MaxAmmo", 50);
+       
 
         scorePanel.text = "Score: " + currentScore.ToString();
     }
