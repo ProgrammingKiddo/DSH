@@ -1,9 +1,9 @@
 {
-    "maxAmmunition": 200,
-    "wavesPerBoss": 4,
+    "maxAmmunition": 225,
+    "wavesPerBoss": 5,
     "shieldRechargeRate": 2,
     "damagePerAsteroid": 5,
     "asteroidSpawnRate": 2,
-    "minAsteroidSpeed": -700,
-    "maxAsteroidSpeed": -900
+    "minAsteroidSpeed": -600,
+    "maxAsteroidSpeed": -800
 }

@@ -1,5 +1,5 @@
 {
-    "maxAmmunition": 150,
+    "maxAmmunition": 175,
     "wavesPerBoss": 4,
     "shieldRechargeRate": 5,
     "damagePerAsteroid": 10,

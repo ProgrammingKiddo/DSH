@@ -24,16 +24,12 @@ public class ShootProjectile : MonoBehaviour
         this.transform.LookAt(target.transform);
     }
 
-    void Update()
-    {
-        
-    }
-
     #endregion
 
     public void Shoot(GameObject projectile)
     {
         GameObject projectileShot = Instantiate(projectile, gunMuzzle.transform.position, this.transform.rotation);
         projectileShot.GetComponent<Rigidbody>().velocity = this.transform.forward * projectile.GetComponent<ProjectileScript>().projectileSpeed;
+        gunMuzzle.GetComponentInChildren<ParticleSystem>().Play();
     }
 }
