@@ -983,6 +983,7 @@ MonoBehaviour:
   player: {fileID: 769713993}
   shootingInterfaceManager: {fileID: 1827365946}
   explosionSound: {fileID: 8300000, guid: 87b0934bee9312d4f935b864b2992c37, type: 3}
+  playerHitSound: {fileID: 8300000, guid: f099ce3d986bc1940a31324c260ee70b, type: 3}
   ammunition: 50
   shieldBar: {fileID: 1339496418}
   easyDifficultyFile: {fileID: 4900000, guid: ce96bfe154f16e24e86d551e9093f577, type: 3}
@@ -1422,7 +1423,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0

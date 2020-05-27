@@ -21,7 +21,7 @@ public class AsteroidMovable : MonoBehaviour
 
     private float minVel, maxVel;
     private GameObject asteroid;
-    private float initX, initY, initZ = 2000;
+    private float initX, initY, initZ = 3000;
     private float spawnRate;
 
     // Start is called before the first frame update

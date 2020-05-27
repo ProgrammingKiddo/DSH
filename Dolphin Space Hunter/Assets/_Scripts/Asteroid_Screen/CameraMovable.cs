@@ -23,11 +23,15 @@ public class CameraMovable : MonoBehaviour
     public GameObject explosion;
     public float startDuration,shakeDuration, startAmount, shakeAmount, smoothAmount; //shake
     public int remainingShield;
+    public AudioClip explosionSound;
+    public GameObject gameDirector;
+    public static int currentScore;
 
     private GUISteroid asteroidUI;
     private bool noShield, isShaking; //Global para comprobar si tenemois escudo
-    private int currentScore, currentAmmunition, maxAmmunition,asteroidDamage;//Escudo actual
+    private int currentAmmunition, maxAmmunition,asteroidDamage;//Escudo actual
     AudioSource collisionSound;
+    private bool playerDead = false;
 
 
     void Start()
@@ -55,8 +59,9 @@ public class CameraMovable : MonoBehaviour
     void Update()
     {
         actualizaCamara();
-        
+        scorePanel.text = "Score: " + currentScore.ToString();
     }
+
 
 
     private void actualizaCamara()
@@ -123,6 +128,7 @@ public class CameraMovable : MonoBehaviour
     public void saveInformation()
     {
         PlayerPrefs.SetInt("Shield", remainingShield);
+        PlayerPrefs.SetInt("PlayerScore", currentScore);
     }
 
 
@@ -130,7 +136,10 @@ public class CameraMovable : MonoBehaviour
     {
         if (other.gameObject.tag == "Asteroid")
         {
-            collisionSound.Play();
+            if (playerDead == false)
+            {
+                collisionSound.Play();
+            }
             ShakeCamera();
 
             remainingShield -= asteroidDamage;
@@ -140,8 +149,7 @@ public class CameraMovable : MonoBehaviour
                 if (noShield)
                 {
                     Instantiate(explosion, new Vector3(transform.position.x, transform.position.y-2f, transform.position.z+5f), Quaternion.identity);
-                    PlayerPrefs.SetInt("PlayerScore", currentScore);
-                    SceneManager.LoadScene("GameOverScene");//cargar GAME OVER
+                    StartCoroutine(gameOver());
                 }
                 else
                 {
@@ -164,5 +172,20 @@ public class CameraMovable : MonoBehaviour
         scorePanel.text = "Score: " + currentScore.ToString();
     }
 
+    IEnumerator gameOver()
+    {
+        playerDead = true;
+        // Dejamos de mostrar nada por pantalla
+        Camera.main.enabled = false;
+        PlayerPrefs.SetInt("PlayerScore", currentScore);
+        asteroidUI.shieldBar.gameObject.SetActive(false);
+        // Paramos la música de la escena
+        gameDirector.GetComponent<AudioSource>().Stop();
+        gameDirector.GetComponent<AudioSource>().enabled = false;
+        // Reproducimos el sonido de explosión de la nave
+        GetComponent<AudioSource>().PlayOneShot(explosionSound, 1f);
+        yield return new WaitForSecondsRealtime(4f);
+        SceneManager.LoadScene("GameOverScene");
+    }
 }
 

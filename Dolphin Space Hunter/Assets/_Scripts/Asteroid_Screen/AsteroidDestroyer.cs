@@ -17,8 +17,8 @@ public class AsteroidDestroyer : MonoBehaviour
     {
         if (this.gameObject.GetComponent<Rigidbody>().position.z <-100)
         {
+            CameraMovable.currentScore += 10;
             Destroy(this.gameObject);
-
         }
     }
 }

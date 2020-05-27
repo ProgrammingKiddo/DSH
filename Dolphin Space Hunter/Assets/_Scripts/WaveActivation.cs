@@ -17,6 +17,7 @@ public class WaveActivation : MonoBehaviour
     public ProgressBar shieldBar;
     public CameraMovable asteroidScript;
     public TextMeshProUGUI hitText;
+    public TextMeshProUGUI newWaveText;
 
     private int iterations;
     private int activeWave;
@@ -46,10 +47,12 @@ public class WaveActivation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Random.Range(0, 100000 / aggressivenessMultiplier) <= iterations)
+        if (Random.Range(0, 1000000 / aggressivenessMultiplier) <= iterations)
         {
+            Debug.Log(activeWave);
             if (activeWave == 0)
             {
+                StartCoroutine(showWaveText());
                 activeWave = 1;
                 PlayerPrefs.SetInt("ActiveWave", activeWave);
             }
@@ -89,6 +92,14 @@ public class WaveActivation : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(2f);
         hitText.gameObject.SetActive(false);
+    }
+
+    IEnumerator showWaveText()
+    {
+        newWaveText.gameObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(2f);
+        newWaveText.gameObject.SetActive(false);
     }
 
     #endregion

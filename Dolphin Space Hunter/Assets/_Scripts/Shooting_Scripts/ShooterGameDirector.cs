@@ -20,6 +20,7 @@ public class ShooterGameDirector : MonoBehaviour
     public GameObject player;
     public ShootingInterfaceManager shootingInterfaceManager;
     public AudioClip explosionSound;
+    public AudioClip playerHitSound;
     public int ammunition;
     public ProgressBar shieldBar;
     public TextAsset easyDifficultyFile, mediumDifficultyFile, hardDifficultyFile;
@@ -61,12 +62,6 @@ public class ShooterGameDirector : MonoBehaviour
 
         shieldBar.BarValue = remainingShield;
         activeWave = PlayerPrefs.GetInt("ActiveWave", 0);
-        /*Debug.Log("ActiveWave: " + activeWave);
-        if (activeWave == 1)
-        {
-            spawnedWaves++;
-            fleetSpawner.spawnWave();
-        }*/
     }
 
     #endregion
@@ -107,6 +102,7 @@ public class ShooterGameDirector : MonoBehaviour
 
     public void playerHit(ProjectileScript projectile)
     {
+        GetComponent<AudioSource>().PlayOneShot(playerHitSound, 0.8f);
         //addBonusModifier(-2);
         // Si el escudo YA estaba a 0, el jugador muere
         if (remainingShield == 0)
@@ -152,13 +148,13 @@ public class ShooterGameDirector : MonoBehaviour
     {
         // Dejamos de mostrar nada por pantalla
         Camera.main.enabled = false;
+        PlayerPrefs.SetInt("PlayerScore", score);
         shieldBar.gameObject.SetActive(false);
         // Paramos la música de la escena
         GetComponent<AudioSource>().Stop();
         // Reproducimos el sonido de explosión de la nave
         playSound(explosionSound, 1f);
         yield return new WaitForSecondsRealtime(4f);
-        PlayerPrefs.SetInt("PlayerScore", score);
         SceneManager.LoadScene("GameOverScene");
     }
 
