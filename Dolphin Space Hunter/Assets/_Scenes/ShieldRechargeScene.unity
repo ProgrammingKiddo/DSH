@@ -2830,5 +2830,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49594aa70ff3850499bb60be9d19bf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensibility: 0
+  sensibility: 2
   rechargeRate: 0

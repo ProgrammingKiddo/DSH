@@ -61,7 +61,7 @@ public class VideoInitializer : MonoBehaviour
         PlayerPrefs.SetInt("Ammo", difficultySettings.maxAmmunition);
         PlayerPrefs.SetInt("Shield", 100);
         PlayerPrefs.SetInt("AsteroidDamage", difficultySettings.damagePerAsteroid);
-        PlayerPrefs.SetInt("ShielRechargeRate", difficultySettings.shieldRechargeRate);
+        PlayerPrefs.SetFloat("ShielRechargeRate", difficultySettings.shieldRechargeRate);
         PlayerPrefs.SetFloat("minAsteroidSpeed", difficultySettings.minAsteroidSpeed);
         PlayerPrefs.SetFloat("maxAsteroidSpeed", difficultySettings.maxAsteroidSpeed);
         PlayerPrefs.SetInt("PlayerScore", 0);

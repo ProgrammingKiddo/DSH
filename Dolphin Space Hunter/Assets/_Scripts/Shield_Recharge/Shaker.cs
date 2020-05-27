@@ -11,7 +11,7 @@ public class Shaker : MonoBehaviour
     void Start()
     {
         cont = 0;
-        sensibility = 5;
+        sensibility = 2;
         rechargeRate = PlayerPrefs.GetInt("ShielRechargeRate", 5);
     }
 

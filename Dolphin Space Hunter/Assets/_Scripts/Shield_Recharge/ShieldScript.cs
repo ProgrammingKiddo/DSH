@@ -7,7 +7,7 @@ using TMPro;
 public class ShieldScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public RectTransform rectTransform;
+    private RectTransform rectTransform;
     public TextMeshProUGUI scorePanel, ammunitionCounter;
     public static float Shield{get; set;}
     private int currentScore, currentAmmunition, maxAmmunition;

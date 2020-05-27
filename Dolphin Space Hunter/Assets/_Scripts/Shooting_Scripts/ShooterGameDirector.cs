@@ -54,6 +54,9 @@ public class ShooterGameDirector : MonoBehaviour
         }
 
         score = PlayerPrefs.GetInt("PlayerScore", 0);
+        bonusModifier = PlayerPrefs.GetInt("BonusModifier", 1);
+        shootingInterfaceManager.updateBonusModifier(bonusModifier);
+        shootingInterfaceManager.updateScore(score);
         ammunition = PlayerPrefs.GetInt("Ammo", 50);
         loadDifficulty();
 
@@ -173,6 +176,7 @@ public class ShooterGameDirector : MonoBehaviour
         PlayerPrefs.SetInt("SpawnedWaves", spawnedWaves);
         PlayerPrefs.SetInt("ActiveWave", activeWave);
         PlayerPrefs.SetInt("SpawnedWaves", spawnedWaves);
+        PlayerPrefs.SetInt("BonusModifier", bonusModifier);
     }
 
     private void loadDifficulty()
