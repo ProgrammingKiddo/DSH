@@ -67,6 +67,7 @@ public class VideoInitializer : MonoBehaviour
         PlayerPrefs.SetInt("PlayerScore", 0);
         PlayerPrefs.SetInt("WavesPerBoss", difficultySettings.wavesPerBoss);
         PlayerPrefs.SetInt("ActiveWave", 0);
+        PlayerPrefs.SetInt("BonusModifier", 0);
     }
 
     private void allowSceneLoad(VideoPlayer source)
