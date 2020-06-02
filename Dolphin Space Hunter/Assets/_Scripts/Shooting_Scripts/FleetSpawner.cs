@@ -85,7 +85,7 @@ public class FleetSpawner : MonoBehaviour
                 }
                 break;
         }
-        spawnedWaves++;
+        ShooterGameDirector.Instance().spawnedWaves++;
     }
 
     #endregion

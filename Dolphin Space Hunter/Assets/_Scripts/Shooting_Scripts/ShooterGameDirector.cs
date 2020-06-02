@@ -25,6 +25,7 @@ public class ShooterGameDirector : MonoBehaviour
     public ProgressBar shieldBar;
     public TextAsset easyDifficultyFile, mediumDifficultyFile, hardDifficultyFile;
     public FleetSpawner fleetSpawner;
+    public int spawnedWaves;
 
     private GameObject activeFleets;
     private int numberOfCurrentShips = 0;
@@ -33,7 +34,6 @@ public class ShooterGameDirector : MonoBehaviour
     private int bonusModifier = 1;
     private int score = 0;
     private int remainingShield;
-    private int spawnedWaves;
     private DifficultySettingsContainer shootingLevel = new DifficultySettingsContainer();
 
     #endregion
@@ -142,7 +142,7 @@ public class ShooterGameDirector : MonoBehaviour
     {
         bonusModifier += bonusToAdd;
         // El multiplicador nunca podrá ser negativo ni cero, ni estar por encima de 99
-        bonusModifier = Mathf.Clamp(bonusModifier, 1, 100);
+        bonusModifier = Mathf.Clamp(bonusModifier, 1, 99);
         shootingInterfaceManager.updateBonusModifier(bonusModifier);
     }
 
@@ -175,7 +175,6 @@ public class ShooterGameDirector : MonoBehaviour
         PlayerPrefs.SetInt("Shield", remainingShield);
         PlayerPrefs.SetInt("SpawnedWaves", spawnedWaves);
         PlayerPrefs.SetInt("ActiveWave", activeWave);
-        PlayerPrefs.SetInt("SpawnedWaves", spawnedWaves);
         PlayerPrefs.SetInt("BonusModifier", bonusModifier);
     }
 
