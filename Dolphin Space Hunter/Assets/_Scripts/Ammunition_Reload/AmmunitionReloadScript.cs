@@ -35,14 +35,14 @@ public class AmmunitionReloadScript : MonoBehaviour
         StartCoroutine(reloadAction());
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if(Input.touchCount==1 && Input.GetTouch(0).phase == TouchPhase.Began && currentAmmunition<maxAmmunition){
-            if(transform.localPosition.x<=colorBarRanges[0] || transform.localPosition.x>=colorBarRanges[3]){
+            if(transform.localPosition.x <= colorBarRanges[0] || transform.localPosition.x >= colorBarRanges[3]){
                 currentAmmunition += (maxAmmunition/10);    //Red reload => +10% of ammo
             }else if(transform.localPosition.x <=colorBarRanges[1] || transform.localPosition.x>=colorBarRanges[2]){
-                currentAmmunition += (maxAmmunition/4);     //Yellow reload => +25% of ammo
+                currentAmmunition += (maxAmmunition/5);     //Yellow reload => +20% of ammo
             }else{
                 currentAmmunition += (maxAmmunition/2);     //Green reload => +50% of ammo
             }

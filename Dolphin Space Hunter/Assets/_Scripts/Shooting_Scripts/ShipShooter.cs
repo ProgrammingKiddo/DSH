@@ -48,7 +48,8 @@ public class ShipShooter : MonoBehaviour
         GameObject projectileShot = Instantiate(projectile,
                                         shootingPoint.transform.position,
                                         Quaternion.LookRotation(attackVector));
-        projectileShot.GetComponent<Rigidbody>().velocity = projectileShot.transform.forward * projectile.GetComponent<ProjectileScript>().projectileSpeed;
+        projectileShot.GetComponent<Rigidbody>().velocity = projectileShot.transform.forward *
+                                        projectile.GetComponent<ProjectileScript>().projectileSpeed;
     }
 
     private Vector3 calculateSpread()
