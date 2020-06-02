@@ -5,9 +5,11 @@ Todo el material empleado en el juego ha sido desarrollado por nosotros, o son a
 
 ## Desarrollo
 
-El videojuego ha sido desarrollado en el plazo de un mes (~35 días)
+El videojuego ha sido desarrollado en el plazo de seis semanas por cuatro estudiantes de la Universidad de Cádiz. Para más información sobre el desarrollo, se puede consultar la [documentación adjunta](https://github.com/ProgrammingKiddo/DSH/blob/master/Documentaci%C3%B3n%20DSH.pdf).
 
 ## El Juego
+
+El juego intenta seguir una estética *Synthwave* ofreciendo una experiencia arcade, donde la muerte llega rápido y lo que importa es conseguir la máxima puntuación.
 
 ![CapturaMenuPrincipal](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Menu.jpg)
 ![CapturaPantallaDisparo](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Shooting.jpg)
@@ -16,6 +18,10 @@ El videojuego ha sido desarrollado en el plazo de un mes (~35 días)
 ![CapturaPantallaEscudo](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Shield.jpg)
 
 ## Instalación
+
+Para instalar el juego basta con descargar la última build del mismo. Se puede obtener de [este mismo repositorio](https://github.com/ProgrammingKiddo/DSH/releases) o de [Google Drive](https://drive.google.com/file/d/1HejGPqFfcxYF-oufJcbo93lXtOXlqUdz/view?usp=sharing).
+
+(*Checksum SHA-256 - 4823AF9A83D4C57629FEDF24675F7F2A1E65153D2E63315823E22A0118AC8DC9*)
 
 ## Desarrollado con
 * [Unity](https://unity.com/) - Motor de Desarrollo
