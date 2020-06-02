@@ -1,9 +1,17 @@
 # DSH
-Dolphin Space Hunter (DSH) es un videojuego de Realidad Aumentada desarrollado en Unity como proyecto en grupo para la asignatura Desarrollo de Sistemas Hipermedia de la Universidad de Cádiz.
+**Dolphin Space Hunter** (DSH) es un videojuego de Realidad Aumentada desarrollado en Unity como proyecto en grupo para la asignatura Desarrollo de Sistemas Hipermedia de la [Universidad de Cádiz](https://www.uca.es/).
 
 Todo el material empleado en el juego ha sido desarrollado por nosotros, o son assets de terceros con licencia de uso.
 
+## Desarrollo
 
+El videojuego ha sido desarrollado en el plazo de un mes (~35 días)
+
+## El Juego
+
+
+
+## Instalación
 
 ## Desarrollado con
 * [Unity](https://unity.com/) - Motor de Desarrollo
