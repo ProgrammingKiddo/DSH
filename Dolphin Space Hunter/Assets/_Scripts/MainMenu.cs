@@ -13,13 +13,16 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI difficultyText;
     public TextMeshProUGUI playersText;
     public TextMeshProUGUI scoresText;
+    public TextMeshProUGUI playButtonText;
     public Image difficultyBackground;
 
     private ScoreboardContainer scoreboard = new ScoreboardContainer();
     private string difficultyString;
 
     private float lightAngleStep = 0;
-    private bool decreaseAngleStep = false;
+    private bool increaseRed = true;
+
+    private Color iteratingColor;
 
     public void Start()
     {
@@ -37,28 +40,29 @@ public class MainMenu : MonoBehaviour
         loadScoreboardToUI();
     }
 
-    /*public void Update()
+    public void Update()
     {
-        if (lightAngleStep >= 6)
+
+        iteratingColor = playButtonText.color;
+        if (iteratingColor.r >= 1f)
         {
-            decreaseAngleStep = true;
+            increaseRed = false;
         }
-        else if (lightAngleStep <= 0)
+        if (iteratingColor.r <= 0f)
         {
-            decreaseAngleStep = false;
+            increaseRed = true;
         }
 
-        if (decreaseAngleStep == true)
+        if (increaseRed == true)
         {
-            lightAngleStep -= 0.1f;
+            iteratingColor.r += 0.01f;
         }
         else
         {
-            lightAngleStep += 0.1f;
+            iteratingColor.r -= 0.01f;
         }
-
-        titleText.material.SetFloat("_LightAngle", lightAngleStep);
-    }*/
+        playButtonText.color = iteratingColor;
+    }
 
     public void PlayGame()
     {

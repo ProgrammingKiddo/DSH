@@ -13,6 +13,7 @@ public class WaveActivation : MonoBehaviour
 
     #region Variables
 
+    public AudioClip newWaveSound;
     public AudioClip playerHitSound;
     public ProgressBar shieldBar;
     public CameraMovable asteroidScript;
@@ -52,6 +53,7 @@ public class WaveActivation : MonoBehaviour
             Debug.Log(activeWave);
             if (activeWave == 0)
             {
+                GetComponent<AudioSource>().PlayOneShot(newWaveSound, 1f);
                 StartCoroutine(showWaveText());
                 activeWave = 1;
                 PlayerPrefs.SetInt("ActiveWave", activeWave);

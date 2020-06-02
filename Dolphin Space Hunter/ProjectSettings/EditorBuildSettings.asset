@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/_Scenes/IntroVideoScene.unity
     guid: e2ae8789cae0785498bfd82057bfd8b0
   - enabled: 1
-    path: Assets/_Scenes/ShootingScene.unity
+    path: Assets/_Scenes/GameplayScenes/ShootingScene.unity
     guid: 4493ef943ba18a347991827f2418d6a7
   - enabled: 1
-    path: Assets/_Scenes/AsteroidScene.unity
+    path: Assets/_Scenes/GameplayScenes/AsteroidScene.unity
     guid: 87905a096ebf4a647afff26e88e78e60
   - enabled: 1
     path: Assets/_Scenes/GameOverScene.unity
@@ -24,10 +24,10 @@ EditorBuildSettings:
     path: Assets/_Scenes/Scoreboard.unity
     guid: b1ba70a700179ce449785ca50d3a0029
   - enabled: 1
-    path: Assets/_Scenes/AmmunitionReloadScene.unity
+    path: Assets/_Scenes/GameplayScenes/AmmunitionReloadScene.unity
     guid: a9edf9dcaa755e64ca94993a70ddf365
   - enabled: 1
-    path: Assets/_Scenes/ShieldRechargeScene.unity
+    path: Assets/_Scenes/GameplayScenes/ShieldRechargeScene.unity
     guid: d9d7c098a169ca74aa2f6fd5041afc0c
   - enabled: 1
     path: Assets/_Scenes/Credits.unity
