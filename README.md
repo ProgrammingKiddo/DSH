@@ -9,7 +9,11 @@ El videojuego ha sido desarrollado en el plazo de un mes (~35 días)
 
 ## El Juego
 
-
+![CapturaMenuPrincipal](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Menu.jpg)
+![CapturaPantallaDisparo](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Shooting.jpg)
+![CapturaPantallaRecarga](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Recharge.jpg)
+![CapturaPantallaAsteroides](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Asteroid.jpg)
+![CapturaPantallaEscudo](https://raw.githubusercontent.com/ProgrammingKiddo/DSH/master/Capturas/Screenshot_Shield.jpg)
 
 ## Instalación
 
